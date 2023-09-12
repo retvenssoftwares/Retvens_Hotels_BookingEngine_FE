@@ -9,6 +9,7 @@ import Carousel from 'react-material-ui-carousel'; // Import Carousel component
 import { Paper, Button } from '@mui/material';
 import Room from './roomDetails';
 import BookingRooms from './bookingRooms';
+import Room2 from './roomDetails2';
 function HotelDetail() {
   const { hotel_id } = useParams();
   const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
@@ -111,7 +112,8 @@ function HotelDetail() {
         </div>
       </div>
 
-     <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} />
+     <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} />
+     {/* <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       <div id="back-to-top">
         <a href="#" />
       </div>

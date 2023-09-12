@@ -5924,3 +5924,28 @@ ul.sidebar-tags li {
   color: #04a9e1;
 }
 
+
+
+
+
+.room-box {
+  width: 100%;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #cccccc37;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.room-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-type-ifo {
+  flex-direction: column;
+  justify-content: flex-start;
+}
