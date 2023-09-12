@@ -1,6 +1,8 @@
 
 
 function Navbar() {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
     return (
         <>
             {/* <link rel='stylesheet' href='/assets/css/style.css'></link>
@@ -10,16 +12,18 @@ function Navbar() {
             {/* <div id="preloader">
                 <div id="status"></div>
             </div> */}
+
+           
             <header className="main_header_area">
                 <div className="header-content py-1 bg-theme">
                     <div className="container d-flex align-items-center justify-content-between">
                         <div className="links">
                             <ul>
-                                <li><a href="#" className="white"><i className="icon-calendar white"></i> Thursday, Mar 26, 2021</a>
+                                <li><a href="#" className="white"><i className="icon-calendar white"></i> {currentDate.toDateString()}</a>
                                 </li>
                                 <li><a href="#" className="white"><i className="icon-location-pin white"></i> Hollywood, America</a>
                                 </li>
-                                <li><a href="#" className="white"><i className="icon-clock white"></i> Mon-Fri: 10 AM – 5 PM</a></li>
+
                             </ul>
                         </div>
                         <div className="links float-right">
@@ -42,7 +46,7 @@ function Navbar() {
                                     </a>
                                 </div>
                                 <div className="navbar-collapse1 d-flex align-items-center" id="bs-example-navbar-collapse-1">
-                                    <ul className="nav navbar-nav" id="responsive-menu" style={{marginLeft:"560px"}}>
+                                    <ul className="nav navbar-nav" id="responsive-menu" style={{ marginLeft: "560px" }}>
 
                                         <li><a href="/home" class="text-decoration-none">Home</a></li>
 
@@ -50,7 +54,7 @@ function Navbar() {
                                         <li><a href="/about" class="text-decoration-none">About Us</a></li>
 
                                         <li className="submenu dropdown" >
-                                            <a href="/hotel-list" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  class="text-decoration-none">Hotels</a>
+                                            <a href="/hotel-list" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="text-decoration-none">Hotels</a>
                                             {/* <ul className="dropdown-menu">
                                                 <li><a href="/hotel-list">Destination List</a></li>
                                                 <li><a href="/hotel-detail">Destination Detail</a></li>

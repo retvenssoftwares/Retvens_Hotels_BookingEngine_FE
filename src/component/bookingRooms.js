@@ -16,3 +16,7 @@ function BookingRooms({totalAmount, setTotalAmount}) {
 }
 
 export default BookingRooms
+
+
+
+
