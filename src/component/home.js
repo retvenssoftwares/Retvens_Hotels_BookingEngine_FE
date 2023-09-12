@@ -1,6 +1,8 @@
 import Navbar from "./navbar"
 import Select from 'react-select';
 import React, { useState } from 'react';
+import TopHotel from "./TopFiveHotels";
+import Footer from "./footer";
 
 function Home() {
   const options = [
@@ -34,7 +36,7 @@ function Home() {
       {/* <Navbar /> */}
 
       {/* banner starts */}
-      <section className="banner pt-10 pb-0 overflow-hidden" style={{ backgroundImage: 'url(/assetsimages/testimonial.png)' }}>
+      <section className="banner pt-1 pb-0 overflow-hidden" style={{ backgroundImage: 'url(/assetsimages/testimonial.png)' }}>
         <div className="container">
           <div className="banner-in">
             <div className="row align-items-center">
@@ -60,7 +62,7 @@ function Home() {
                           </div> 
                         </div>
                       </div>
-                      <div class="col-lg-6 mb-2">
+                      {/* <div class="col-lg-6 mb-2">
                         <div class="form-group">
                           <label class="checkIn-text">Check-in</label>
                           <div class="input-box">
@@ -71,8 +73,8 @@ function Home() {
                         </div>
 
 
-                      </div>
-                      <div class="col-lg-6 mb-2">
+                      </div> */}
+                      {/* <div class="col-lg-6 mb-2">
                         <div class="form-group">
                           <label class="checkIn-text">Check-out</label>
                           <div class="input-box">
@@ -83,7 +85,7 @@ function Home() {
                         </div>
 
 
-                      </div>
+                      </div> */}
 
                       <div class="col-lg-12">
                         <div class="form-group mb-0 text-center">
@@ -105,110 +107,7 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* about-us starts */}
-      <section className="about-us pb-6 pt-6" style={{ backgroundImage: 'url(images/shape4.png)', backgroundPosition: 'center' }}>
-
-        <div className="white-overlay" />
-      </section>
-      {/* about-us ends */}
-      {/* top Destination starts */}
-      <section className="trending pb-5 pt-0">
-        <div className="container">
-          <div className="section-title mb-6 w-50 mx-auto text-center">
-            <h4 className="mb-1 theme1">Top Hotels</h4>
-            <h2 className="mb-1">Explore <span className="theme">Top Hotels</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-            </p>
-          </div>
-          <div className="row align-items-center">
-            <div className="col-lg-5 mb-4">
-              <div className="trend-item1">
-                <div className="trend-image position-relative rounded">
-                  <img src="/assets/images/hotel1.png" alt="image" height="650px" />
-                  <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
-                    <div className="trend-content-title">
-                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">England</a></h5>
-                      <h3 className="mb-0 white">London</h3>
-                    </div>
-                    <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
-                  </div>
-                  <div className="color-overlay" />
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-7">
-              <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
-                  <div className="trend-item1">
-                    <div className="trend-image position-relative rounded">
-                      <img src="/assets/images/hotel2.png" alt="image" height="300px" />
-                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
-                        <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Italy</a>
-                          </h5>
-                          <h3 className="mb-0 white">Caspian Valley</h3>
-                        </div>
-                        <span className="white bg-theme p-1 px-2 rounded">18 Tours</span>
-                      </div>
-                      <div className="color-overlay" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
-                  <div className="trend-item1">
-                    <div className="trend-image position-relative rounded">
-                      <img src="/assets/images/hotel3.png" alt="image" height="300px" />
-                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
-                        <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Tokyo</a>
-                          </h5>
-                          <h3 className="mb-0 white">Japan</h3>
-                        </div>
-                        <span className="white bg-theme p-1 px-2 rounded">21 Tours</span>
-                      </div>
-                      <div className="color-overlay" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
-                  <div className="trend-item1">
-                    <div className="trend-image position-relative rounded">
-                      <img src="/assets/images/hotel3.png" alt="image" height="300px" />
-                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100">
-                        <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Moscow</a>
-                          </h5>
-                          <h3 className="mb-0 white">Russia</h3>
-                        </div>
-                        <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
-                      </div>
-                      <div className="color-overlay" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
-                  <div className="trend-item1">
-                    <div className="trend-image position-relative rounded">
-                      <img src="/assets/images/hotel4.png" alt="image" height="300px" />
-                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
-                        <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Florida</a>
-                          </h5>
-                          <h3 className="mb-0 white">America</h3>
-                        </div>
-                        <span className="white bg-theme p-1 px-2 rounded">32 Tours</span>
-                      </div>
-                      <div className="color-overlay" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* top Destination ends */}
-      {/* about-us starts */}
+     
       <section className="about-us pt-0" style={{ backgroundImage: 'url(images/bg/bg-trans.png)' }}>
         <div className="container">
           <div className="about-image-box">
@@ -602,80 +501,8 @@ function Home() {
         </div>
       </section>
 
-      <footer className="pt-20 pb-4" style={{ backgroundImage: 'url(images/background_pattern.png)' }}>
-        <div className="section-shape top-0" style={{ backgroundImage: 'url(images/shape8.png)' }} />
-
-        <div className="footer-upper pb-4">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-4 col-md-6 col-sm-12 mb-4 pe-4">
-                <div className="footer-about">
-                  <img src="/assets/images/Retvens-Hotels-Resized.png" alt="" />
-                  <p className="mt-3 mb-3 white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio suspendisse leo neque
-                    iaculis molestie sagittis maecenas aenean eget molestie sagittis.
-                  </p>
-                  <ul>
-                    <li className="white"><strong>PO Box:</strong> +47-252-254-2542</li>
-                    <li className="white"><strong>Location:</strong> Collins Street, sydney, Australia</li>
-                    <li className="white"><strong>Email:</strong> info@Travelin.com</li>
-                    <li className="white"><strong>Website:</strong> www.Travelin.com</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-2 col-md-6 col-sm-12 mb-4">
-                <div className="footer-links">
-                  <h3 className="white">Quick link</h3>
-                  <ul>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="about-us.html">Delivery Information</a></li>
-                    <li><a href="about-us.html">Privacy Policy</a></li>
-                    <li><a href="about-us.html">Terms &amp; Conditions</a></li>
-                    <li><a href="about-us.html">Customer Service</a></li>
-                    <li><a href="#about-us.html">Return Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div className="footer-payment">
-          <div className="container">
-            <div className="row footer-pay align-items-center justify-content-between text-lg-start text-center">
-              <div className="col-lg-8 footer-payment-nav mb-4">
-                <ul className>
-                  <li className="me-2">We Support:</li>
-                  <li className="me-2"><i className="fab fa-cc-mastercard fs-4" /></li>
-                  <li className="me-2"><i className="fab fa-cc-paypal fs-4" /></li>
-                  <li className="me-2"><i className="fab fa-cc-stripe fs-4" /></li>
-                  <li className="me-2"><i className="fab fa-cc-visa fs-4" /></li>
-                  <li className="me-2"><i className="fab fa-cc-discover fs-4" /></li>
-                </ul>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div className="footer-copyright">
-          <div className="container">
-            <div className="copyright-inner rounded p-3 d-md-flex align-items-center justify-content-between">
-              <div className="copyright-text">
-                <p className="m-0 white">2022 Travelin. All rights reserved.</p>
-              </div>
-              <div className="social-links">
-                <ul>
-                  <li><a href="#"><i className="fab fa-facebook" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-twitter" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-instagram" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-linkedin" aria-hidden="true" /></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="particles-js" />
-      </footer>
+      <Footer/>
+    
       {/* footer ends */}
       {/* Back to top start */}
       <div id="back-to-top">
