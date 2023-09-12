@@ -18,6 +18,7 @@ function Room2({ totalAmount, setTotalAmount }) {
   const [containerVisible, setContainerVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false); // State to control modal open/close
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); // Index of selected image
+  const [roomSelected, setRoomSelected] = useState([{ name: "Room 1", adult: 1, child: 2 }, { name: "Room 2", adult: 2, child: 0 }])
   const roomImages = [
     '/assets/images/hotel.png',
     '/assets/images/hotel1.png',
@@ -89,6 +90,9 @@ function Room2({ totalAmount, setTotalAmount }) {
   };
 
 
+  
+  
+
   const updateCounterAndTotal = () => {
     // This function updates the counter and total amount
     // You can also add logic to update the nested boxes here
@@ -154,27 +158,60 @@ function Room2({ totalAmount, setTotalAmount }) {
   return (
     <>
 
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Item className='room-box'>
-            <img src="/assets/images/hotel.png" alt="" className="room-image" />
-            <div className='room-info'>
-              <div className='room-type-info'>
-                <h4  style={{ whiteSpace: 'nowrap' }}>Deluxe Room</h4>
-                <label >ROOM RATES EXCLUSIVE OF TAX</label><br />
-                <label >MAX 5 Guests</label>
-              </div>
-              <div>
-                <h5 >Rs.10000.00</h5>
-                <p  style={{ whiteSpace: 'nowrap', color: "black" }}>PER NIGHT</p>
-                <p  style={{ whiteSpace: 'nowrap', color: "green" }}>10 Rooms Left</p>
+      <Grid container spacing={3}>
+        <Grid item xs={7}>
+          <Item >
+            <div className='room-box'>
+              <img src="/assets/images/hotel.png" alt="" className="room-image" />
+              <div className='room-info'>
+                <div className='room-type-info'>
+                  <h4 style={{ whiteSpace: 'nowrap' }}>Deluxe Room</h4>
+                  <label >ROOM RATES EXCLUSIVE OF TAX</label><br />
+                  <label >MAX 5 Guests</label>
+                </div>
+                <div>
+                  <h5 >Rs.10000.00</h5>
+                  <p style={{ whiteSpace: 'nowrap', color: "black" }}>PER NIGHT</p>
+                  <p style={{ whiteSpace: 'nowrap', color: "green" }}>10 Rooms Left</p>
+                  <button onClick={showContainer} style={{ marginLeft: "", marginTop: "" }}>Add Rooms</button>
 
+                </div>
               </div>
+            </div>
+            <div>
+              {roomSelected.length > 0 &&
+                roomSelected.map((room, index) => {
+                  
+                  return <>
+                    <div>
+                      <h2>{room.name}</h2>
+                      <select value={room.adult}>
+                        <option value={0}>0</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                      </select>
+                      <select value={room.child}>
+                        <option value={0}>0</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                      </select>
+                    </div>
+                  </>
+                })
+              }
             </div>
           </Item>
         </Grid>
         <Grid item xs={4}>
-          <Item className='room-box'>kk</Item>
+          <Item className='room-book'>
+
+            <label className="">Booking Summary</label>
+            <h5 className="date">Dates</h5>
+            <label className="">Nights</label>
+            <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4> {/* Display the updated total amount */}
+            <a href="/booking"><button className="book-btn">Book</button></a>
+
+          </Item>
         </Grid>
 
       </Grid>
