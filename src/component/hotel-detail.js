@@ -35,7 +35,7 @@ function HotelDetail() {
   return (
     <div style={{ backgroundColor: "#f0f3f6", minHeight: "100%" }}>
       <section
-        className="breadcrumb-main pb-20"
+        className="breadcrumb-main mb-4"
         style={{ backgroundImage: "url(assets/images/bg/bg1.jpg)" }}
       >
         <div

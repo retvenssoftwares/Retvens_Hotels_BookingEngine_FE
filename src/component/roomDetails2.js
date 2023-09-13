@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles";
 import InputLabel from "@mui/material/InputLabel";
 import Modal from "@mui/material/Modal"; // Import Modal component
 import Carousel from "react-material-ui-carousel"; // Import Carousel component
-import { Paper, Button } from '@mui/material';
+import { Paper, Button } from "@mui/material";
 import BookingRooms from "./bookingRooms";
 
 function Room2({ totalAmount, setTotalAmount }) {
@@ -83,7 +83,6 @@ function Room2({ totalAmount, setTotalAmount }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-
 
   // Function to navigate to the next image in the carousel
   const nextImage = () => {
@@ -204,45 +203,52 @@ function Room2({ totalAmount, setTotalAmount }) {
   };
 
   const handleChange = () => {
-    return
-  }
-  
+    return;
+  };
+
   return (
     <>
       <Grid container spacing={2} className="main-box">
         <Grid item xs={7}>
           <Item>
-            
             <div className="room-box">
-            <div className="col-lg-4" onClick={() => openModal(0)} style={{ cursor: "pointer" }}>
-                        <img src="/assets/images/hotel.png" alt="" className="room-image" />
-                    </div>
+              <div
+                className="col-lg-4"
+                onClick={() => openModal(0)}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src="/assets/images/hotel.png"
+                  alt=""
+                  className="room-image"
+                />
+              </div>
               <Modal open={modalOpen} onClose={closeModal} style={modalStyles}>
                 <div className="modal-content">
-                    <Carousel
-                        autoPlay={false}
-                        animation="fade"
-                        index={selectedImageIndex}
-                    >
-                        {roomImages.map((image, index) => (
-                            <Paper key={index} elevation={3}>
-                                <img
-                                    src={image}
-                                    alt={`Room ${index + 1}`}
-                                    style={{ width: '100%' }}
-                                />
-                            </Paper>
-                        ))}
-                    </Carousel>
-                    <div className="modal-controls">
-                        <Button onClick={prevImage}>Previous</Button>
-                        <Button onClick={nextImage}>Next</Button>
-                    </div>
+                  <Carousel
+                    autoPlay={false}
+                    animation="fade"
+                    index={selectedImageIndex}
+                  >
+                    {roomImages.map((image, index) => (
+                      <Paper key={index} elevation={3}>
+                        <img
+                          src={image}
+                          alt={`Room ${index + 1}`}
+                          style={{ width: "100%" }}
+                        />
+                      </Paper>
+                    ))}
+                  </Carousel>
+                  <div className="modal-controls">
+                    <Button onClick={prevImage}>Previous</Button>
+                    <Button onClick={nextImage}>Next</Button>
+                  </div>
                 </div>
-            </Modal>
+              </Modal>
               <div className="room-info">
-                <div className="room-type-info">
-                  <h4 style={{ whiteSpace: "nowrap" }}>Deluxe Room</h4>
+                <div className="room-type-info" style={{textAlign:"left"}}>
+                  <h4 style={{ whiteSpace: "nowrap"}}>Deluxe Room</h4>
                   <label>ROOM RATES EXCLUSIVE OF TAX</label>
                   <br />
                   <label>MAX 5 Guests</label>
@@ -279,15 +285,12 @@ function Room2({ totalAmount, setTotalAmount }) {
                   ) : (
                     <button
                       onClick={toggleButton}
+                      className="add-room"
                       style={{
-                        height: "30px",
-                        width: "100px",
-                        borderRadius: "2px",
-                        background: "#acd037",
-                        color: "#fffff",
+                      
                       }}
                     >
-                      Add Rooms
+                      Add Room
                     </button>
                   )}
                 </div>
@@ -348,26 +351,42 @@ function Room2({ totalAmount, setTotalAmount }) {
           </Item>
         </Grid>
         <Grid item xs={4}>
-        {totalAmount > 0 && (
-          <Item className="room-book">
-            
-              <div>
-                <label className="">Booking Summary</label>
-                <h5 className="date">Dates</h5>
-                <label className="">Nights</label>
-                <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4>{" "}
+          {totalAmount > 0 && (
+            <Item className="room-book">
+              <div style={{margin:"10px"}}>
+                <h3 className="" style={{ fontSize: "20sp" }}>
+                  Booking Summary
+                </h3>
+                {/* <h5 className="date" style={{ textAlign: "left" }}>
+                  Dates
+                </h5> */}
+                <h5 className="" style={{ textAlign: "left", marginTop:"15px" }}>
+                  Nights
+                </h5>
                 {/* Display the updated total amount */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom:"15px"
+                  }}
+                >
+                  <h4 className="" style={{ textAlign: "left" }}>
+                    Total:{" "}
+                  </h4>
+                  <h4 className="" style={{ textAlign: "left" }}>
+                    Rs.{totalAmount.toFixed(2)}
+                  </h4>
+                </div>
                 <a href="/booking">
                   <button className="book-btn">Book</button>
                 </a>
               </div>
-            
-          </Item>
+            </Item>
           )}
         </Grid>
       </Grid>
-      
-
     </>
   );
 }
