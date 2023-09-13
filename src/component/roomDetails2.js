@@ -23,26 +23,40 @@ function Room2({ totalAmount, setTotalAmount }) {
     // { name: "Room 1", adult: 1, child: 0 },
   ]);
 
+  console.log(totalAmount);
+  console.log(typeof totalAmount);
   const toggleButton = () => {
     setContainerVisible(!containerVisible);
   };
 
+  // Function to open the modal and set the selected image index
+  const openModal = (index) => {
+    setSelectedImageIndex(index);
+    setModalOpen(true);
+  };
+  // Function to close the modal
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const incrementCounter = () => {
     setCounterValue(counterValue + 1);
-    setRoomSelected((prev)=>[...prev, { name: "Room "+(roomSelected.length+1), adult: 1, child: 0 }])
-    setTotalAmount((prev)=> prev+10000)
+    setRoomSelected((prev) => [
+      ...prev,
+      { name: "Room " + (roomSelected.length + 1), adult: 1, child: 0 },
+    ]);
+    setTotalAmount((prev) => prev + 10000);
   };
 
   const decrementCounter = () => {
     if (counterValue > 0) {
       setCounterValue(counterValue - 1);
 
-      setTotalAmount((prev)=> prev-10000)
+      setTotalAmount((prev) => prev - 10000);
 
-      const arr = [...roomSelected]
-      arr.pop()
-      setRoomSelected(arr)
-
+      const arr = [...roomSelected];
+      arr.pop();
+      setRoomSelected(arr);
     } else {
       toggleButton(); // Convert back to button when counter is less than 1
     }
@@ -69,15 +83,7 @@ function Room2({ totalAmount, setTotalAmount }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  // Function to open the modal and set the selected image index
-  const openModal = (index) => {
-    setSelectedImageIndex(index);
-    setModalOpen(true);
-  };
-  // Function to close the modal
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+
 
   // Function to navigate to the next image in the carousel
   const nextImage = () => {
@@ -197,16 +203,22 @@ function Room2({ totalAmount, setTotalAmount }) {
     width: "50%", // Set your desired width here
   };
 
+  const handleChange = () => {
+    return
+  }
+
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={2} className="main-box">
         <Grid item xs={7}>
           <Item>
+            
             <div className="room-box">
               <img
                 src="/assets/images/hotel.png"
                 alt=""
                 className="room-image"
+                onClick={handleChange}
               />
               <div className="room-info">
                 <div className="room-type-info">
@@ -238,7 +250,6 @@ function Room2({ totalAmount, setTotalAmount }) {
                         type="text"
                         value={counterValue}
                         readOnly
-                        
                         style={buttonStyle}
                       />
                       <button onClick={incrementCounter} style={buttonStyle}>
@@ -246,8 +257,16 @@ function Room2({ totalAmount, setTotalAmount }) {
                       </button>
                     </div>
                   ) : (
-                  <button onClick={toggleButton} style={{height:"30px", width:"100px", borderRadius:"2px", background:"#acd037",
-                  color:"#fffff"}}>
+                    <button
+                      onClick={toggleButton}
+                      style={{
+                        height: "30px",
+                        width: "100px",
+                        borderRadius: "2px",
+                        background: "#acd037",
+                        color: "#fffff",
+                      }}
+                    >
                       Add Rooms
                     </button>
                   )}
@@ -257,47 +276,77 @@ function Room2({ totalAmount, setTotalAmount }) {
             <div>
               {roomSelected.length > 0 &&
                 roomSelected.map((room, index) => {
-                  return (
-                    <>
-                      <div key={index} className="select-room">
-                        <h5>{room.name}</h5>
-                        <div className="">
-                          <label for="adult">Adult</label>
-                          <select id="adult">
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                          </select>
-                        </div>
+                  const handleChange = (event) => {
+                    const { name, value } = event.target;
+                    setRoomSelected((prevRooms) =>
+                      prevRooms.map((prevRoom, prevIndex) =>
+                        prevIndex === index
+                          ? { ...prevRoom, [name]: parseInt(value) }
+                          : prevRoom
+                      )
+                    );
+                  };
 
-                        <div>
-                          <label for="child">Children</label>
-                          <select value={room.child} id="child">
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                          </select>
-                        </div>
+                  return (
+                    <div key={index} className="select-room">
+                      <h5>{room.name}</h5>
+                      <div className="">
+                        <label htmlFor="adult">Adult</label>
+                        <select
+                          name="adult"
+                          value={room.adult}
+                          onChange={handleChange}
+                          id={`adult-${index}`} // Add a unique ID
+                        >
+                          {[0, 1, 2].map((value) => (
+                            <option key={value} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
                       </div>
-                    </>
+
+                      <div>
+                        <label htmlFor="child">Children</label>
+                        <select
+                          name="child"
+                          value={room.child}
+                          onChange={handleChange}
+                          id={`child-${index}`} // Add a unique ID
+                        >
+                          {[0, 1, 2].map((value) => (
+                            <option key={value} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
                   );
                 })}
             </div>
           </Item>
         </Grid>
         <Grid item xs={4}>
+        {totalAmount > 0 && (
           <Item className="room-book">
-            <label className="">Booking Summary</label>
-            <h5 className="date">Dates</h5>
-            <label className="">Nights</label>
-            <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4>{" "}
-            {/* Display the updated total amount */}
-            <a href="/booking">
-              <button className="book-btn">Book</button>
-            </a>
+            
+              <div>
+                <label className="">Booking Summary</label>
+                <h5 className="date">Dates</h5>
+                <label className="">Nights</label>
+                <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4>{" "}
+                {/* Display the updated total amount */}
+                <a href="/booking">
+                  <button className="book-btn">Book</button>
+                </a>
+              </div>
+            
           </Item>
+          )}
         </Grid>
       </Grid>
+
     </>
   );
 }
