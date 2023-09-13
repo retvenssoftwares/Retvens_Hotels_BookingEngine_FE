@@ -8,6 +8,7 @@ import About from './component/about';
 import Booking from './component/booking';
 import HotelList from './component/hotel-list';
 import HotelDetail from './component/hotel-detail';
+import RoomBooking from './component/RoomBooking';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route exact path="/booking" element={<Booking />} />
                 <Route exact path="/hotel-list" element={<HotelList />} />
                 <Route exact path="/hotel-detail/:hotel_id" element={<HotelDetail />} />
+                <Route exact path="/roombooking" element={<RoomBooking />} />
                
             </Routes>
         </Router>

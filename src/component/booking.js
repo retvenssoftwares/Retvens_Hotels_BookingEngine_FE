@@ -1,7 +1,24 @@
 import Footer from "./footer"
 import Navbar from "./navbar"
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 
 function Booking() {
+
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
+  // }));
+  const textFieldStyle = {
+    height: '1px',
+    marginBottom: '50px',
+    width: '400px' // Adjust the height value as needed
+};
     return (
             <div>
               
@@ -25,7 +42,7 @@ function Booking() {
               </section>
               {/* BreadCrumb Ends */} 
               {/* top Destination starts */}
-              <section className="trending pt-6 pb-0 bg-lgrey">
+              {/* <section className="trending pt-6 pb-0 bg-lgrey">
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-8 mb-4">
@@ -145,7 +162,7 @@ function Booking() {
                           <div className="customer-information card-information">
                             <h3 className="border-b pb-2 mb-2">How do you want to pay?</h3>
                             <div className="trending-topic-main">
-                              {/* tab navs */}
+                           
                               <ul className="nav nav-tabs nav-pills nav-fill w-50" id="postsTab1" role="tablist">
                                 <li className="nav-item me-2 ms-0" role="presentation">
                                   <button aria-controls="card" aria-selected="false" className="nav-link active" data-bs-target="#card" data-bs-toggle="tab" id="card-tab" role="tab" type="button">Credit/Debit card</button>
@@ -154,9 +171,9 @@ function Booking() {
                                   <button aria-controls="paypal" aria-selected="true" className="nav-link" data-bs-target="#paypal" data-bs-toggle="tab" id="paypal-tab" role="tab" type="button">Digital Payment</button>
                                 </li>
                               </ul>
-                              {/* tab contents */}
+                           
                               <div className="tab-content" id="postsTabContent1">
-                                {/* card posts */}
+                            
                                 <div aria-labelledby="card-tab" className="tab-pane fade active show" id="card" role="tabpanel">
                                   <form>
                                     <h5 className="mb-2 border-b pb-2"><i className="fa fa-credit-card" /> Credit Card</h5>
@@ -197,7 +214,7 @@ function Booking() {
                                     </div>
                                   </form>
                                 </div>
-                                {/* paypal posts */}
+                             
                                 <div aria-labelledby="paypal-tab" className="tab-pane fade" id="paypal" role="tabpanel">
                                   <div className="paypal-card">
                                     <h5 className="mb-2 border-b pb-2"><i className="fab fa-paypal" /> Paypal</h5>
@@ -327,9 +344,28 @@ function Booking() {
                     </div>
                   </div>
                 </div>
-              </section>
-            
-             <Footer/>
+              </section> */}
+            {/* <Grid container spacing={3}>
+        <Grid item xs={7}>
+          <Item > */}
+            <form style={{ height: "450px" }}>
+
+            {/* <TextField id="demo-helper-text-misaligned-no-helper" size="small" label="Name" /> */}
+            </form>
+          
+           
+           
+          {/* </Item>
+        </Grid>
+        <Grid item xs={4}>
+          <Item>
+
+           
+          </Item>
+        </Grid>
+
+      </Grid> */}
+         
              <div id="back-to-top">
         <a href="#" />
       </div>

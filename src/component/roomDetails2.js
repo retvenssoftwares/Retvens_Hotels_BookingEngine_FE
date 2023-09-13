@@ -90,8 +90,8 @@ function Room2({ totalAmount, setTotalAmount }) {
   };
 
 
-  
-  
+
+
 
   const updateCounterAndTotal = () => {
     // This function updates the counter and total amount
@@ -181,7 +181,7 @@ function Room2({ totalAmount, setTotalAmount }) {
             <div>
               {roomSelected.length > 0 &&
                 roomSelected.map((room, index) => {
-                  
+
                   return <>
                     <div>
                       <h2>{room.name}</h2>
