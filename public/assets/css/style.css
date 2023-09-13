@@ -8216,7 +8216,6 @@ ul.sidebar-tags li a:hover {
 .room-box {
   width: 100%;
   margin: 10px;
-
   border-radius: 5px;
   box-shadow: 0 0 15px #cccccc37;
   display: flex;
@@ -8228,10 +8227,11 @@ ul.sidebar-tags li a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  padding: 10px;
 }
 
-.room-type-info {
+.room-type-kinfo {
   flex-direction: column;
   justify-content: left;
 }
@@ -8241,6 +8241,7 @@ ul.sidebar-tags li a:hover {
   justify-content: space-evenly;
   align-items: center;
   backdrop-filter: blur(6px);
+  background-color: #f5f5f5;
   color: #000000;
   gap: 10px;
   border: #000000 solid 2px;
@@ -8248,6 +8249,7 @@ ul.sidebar-tags li a:hover {
   border-radius: 10px;
   margin: 5px;
 }
+<<<<<<< HEAD
 .booking-text-field{
   width: 10px;
   border-radius: 2px;
@@ -8314,4 +8316,23 @@ ul.sidebar-tags li a:hover {
 /* Add this to your CSS stylesheet */
 .margin-left-text {
   margin-left: 20px; /* Adjust the margin value as needed */
+=======
+
+
+
+
+.image_wrapper {
+  position: relative;
+}
+.overlay {
+  position: absolute; 
+  background: rgba(57, 57, 57, 0.5);
+  
+}
+.overlay_2 {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+>>>>>>> b0fb4587f4572e027c42a0597753b63af57d1793
 }
