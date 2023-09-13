@@ -8319,7 +8319,20 @@ ul.sidebar-tags li a:hover {
 }
 
 
-
+.remove-form{
+  width: 100px;
+  height:30px;
+  color:white;
+  border-radius: 8px;
+  background-color: #272a3d;
+}
+.edit-form{
+  width: 100px;
+  height:30px;
+  color:white;
+  border-radius: 8px;
+  background-color: #acd037;
+}
 
 
 

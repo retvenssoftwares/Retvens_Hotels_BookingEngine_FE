@@ -1,3 +1,4 @@
+import React,{useState} from "react";
 import Footer from "./footer"
 import Navbar from "./navbar"
 import Grid from '@mui/material/Grid';
@@ -15,11 +16,12 @@ function Booking() {
   //   textAlign: 'center',
   //   color: theme.palette.text.secondary,
   // }));
-  const textFieldStyle = {
-    height: '1px',
-    marginBottom: '50px',
-    width: '400px' // Adjust the height value as needed
+  const [showForm, setShowForm] = useState(true);
+  const handleRemoveClick = () => {
+    // Set showForm to false to hide the form
+    setShowForm(false);
   };
+
   return (
     <div>
 
@@ -52,6 +54,7 @@ function Booking() {
                   <div className="customer-information mb-4 box-shadow">
                     {/* <h3 className="border-b pb-2 mb-2">Traveller Information</h3> */}
                     <div className="customer-information mb-4 box-shadow bg-white top-color" height="80px" padding="30px"><h4 className="booking-form margin-left-text">Enter Your Details</h4></div>
+                    {showForm && (
                     <form className="mb-2 bg-white">
                       {/* <h5>Let us know who you are</h5> */}
                       <div className="row">
@@ -77,6 +80,12 @@ function Booking() {
                               <div>
                                 <p className="mb-0">ROOM INFROMATION</p>
                                 <p className="mb-0">Deluxe Cottages - Deluxe Cottages CP</p>
+                                <p className="mb-0">Adult-0,child-0</p>
+                                <div style={{padding:"20px", gap:"15px" ,display:"flex", flexDirection:"row"}}>
+                                <button className="edit-form  " onClick={handleRemoveClick}>EDIT</button>
+                                <button className="remove-form" onClick={handleRemoveClick}>REMOVE</button>
+                                </div>
+                                
                               </div>
 
 
@@ -109,7 +118,7 @@ function Booking() {
                         <div className="col-md-4">
                           <div className="form-group mb-2">
                             <label>First Name</label>
-                            <input type="text" placeholder="First Name" className="text-input" required/>
+                            <input type="text" placeholder="First Name" className="text-input"/>
                           </div>
                         </div>
                         <div className="col-md-5">
@@ -145,92 +154,16 @@ function Booking() {
                         </div>
                       </div>
                     </form>
+                    )}
                   </div>
-                  {/* <div className="customer-information mb-4 d-flex align-items-center bg-grey rounded p-4">
-                            <i className="fa fa-grin-wink rounded fs-1 bg-theme white p-3 px-4" />
-                            <div className="customer-info ps-4">
-                              <h6 className="mb-1">Good To Know:</h6>
-                              <small>Free Cancellation until 14:00 pn 11 Feb 2022</small>
-                            </div>
-                          </div> */}
+               
                   <div className="customer-information card-information">
                     {/* <h3 className="border-b pb-2 mb-2">How do you want to pay?</h3> */}
                     <div className="trending-topic-main">
 
-                      {/* <ul className="nav nav-tabs nav-pills nav-fill w-50" id="postsTab1" role="tablist">
-                                <li className="nav-item me-2 ms-0" role="presentation">
-                                  <button aria-controls="card" aria-selected="false" className="nav-link active" data-bs-target="#card" data-bs-toggle="tab" id="card-tab" role="tab" type="button">Credit/Debit card</button>
-                                </li>
-                                <li className="nav-item m-0" role="presentation">
-                                  <button aria-controls="paypal" aria-selected="true" className="nav-link" data-bs-target="#paypal" data-bs-toggle="tab" id="paypal-tab" role="tab" type="button">Digital Payment</button>
-                                </li>
-                              </ul>
-                            */}
-                      {/* <div className="tab-content" id="postsTabContent1">
-                            
-                                <div aria-labelledby="card-tab" className="tab-pane fade active show" id="card" role="tabpanel">
-                                  <form>
-                                    <h5 className="mb-2 border-b pb-2"><i className="fa fa-credit-card" /> Credit Card</h5>
-                                    <div className="row align-items-center">
-                                      <div className="col-md-8">
-                                        <div className="card-detail">
-                                          <div className="row">
-                                            <div className="col-md-6">
-                                              <div className="form-group mb-2">
-                                                <label>Card Holder Number</label>
-                                                <input type="text" />
-                                              </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <div className="form-group mb-2">
-                                                <label>Card Number</label>
-                                                <input type="text" placeholder="**** **** **** ****" />
-                                              </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <div className="form-group mb-2">
-                                                <label>Expiry Date</label>
-                                                <input type="text" placeholder=" Expiry Date" />
-                                              </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <div className="form-group">
-                                                <label>CVC/CVV</label>
-                                                <input type="text" placeholder="CVC/CVV" />
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div className="col-md-4">
-                                        <img src="/assets/images/cc.png" alt="" className="rounded" />
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                             
-                                <div aria-labelledby="paypal-tab" className="tab-pane fade" id="paypal" role="tabpanel">
-                                  <div className="paypal-card">
-                                    <h5 className="mb-2 border-b pb-2"><i className="fab fa-paypal" /> Paypal</h5>
-                                    <ul className>
-                                      <li className="d-block">To make the payment process secure and complete you will be redirected to Paypal Website.</li>
-                                      <li className="d-block">
-                                        <a href className="theme">Checkout via Paypal <i className="fa fa-long-arrow-alt-right" /></a>
-                                      </li>
-                                      <li className="d-block">The total Amount you will be charged is: <span className="fw-bold theme">$ 245.50</span></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div> */}
+                     
                     </div>
-                    {/* <div className="booking-terms border-t pt-3 mt-3">
-                              <form className="d-lg-flex align-items-center">
-                                <div className="form-group mb-2 w-75">
-                                  <input type="checkbox" /> By continuing, you agree to the <a href="#">Terms and Conditions.</a>
-                                </div>
-                                <a href="#" className="nir-btn float-lg-end w-25">CONFIRM BOOKING</a>
-                              </form>
-                            </div> */}
+                 
                   </div>
                 </div>
               </div>
