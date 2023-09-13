@@ -184,7 +184,7 @@ function Home() {
       </section>
       {/* about-us ends */}
       {/* best tour Starts */}
-  
+  <TopHotel/>
       {/* best tour Ends */}
       {/* Last Minute Deal Starts */}
       <section className="trending pb-0 pt-6" style={{ backgroundImage: 'url(images/shape2.png)' }}>

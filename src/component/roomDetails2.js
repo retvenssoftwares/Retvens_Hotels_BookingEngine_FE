@@ -1,38 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { TextField } from '@mui/material';
-import { Select, MenuItem } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { TextField } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
 import { Row, Col } from "reactstrap";
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import Modal from '@mui/material/Modal'; // Import Modal component
-import Carousel from 'react-material-ui-carousel'; // Import Carousel component
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import InputLabel from "@mui/material/InputLabel";
+import Modal from "@mui/material/Modal"; // Import Modal component
+import Carousel from "react-material-ui-carousel"; // Import Carousel component
 // import { Paper, Button } from '@mui/material';
-import BookingRooms from './bookingRooms';
+import BookingRooms from "./bookingRooms";
 
 function Room2({ totalAmount, setTotalAmount }) {
   const [containerVisible, setContainerVisible] = useState(false);
+  const [counterValue, setCounterValue] = useState(0);
   const [modalOpen, setModalOpen] = useState(false); // State to control modal open/close
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); // Index of selected image
-  const [roomSelected, setRoomSelected] = useState([{ name: "Room 1", adult: 1, child: 2 }, { name: "Room 2", adult: 2, child: 0 }])
+  const [roomSelected, setRoomSelected] = useState([
+    // { name: "Room 1", adult: 1, child: 0 },
+  ]);
+
+  const toggleButton = () => {
+    setContainerVisible(!containerVisible);
+  };
+
+  const incrementCounter = () => {
+    setCounterValue(counterValue + 1);
+    setRoomSelected((prev)=>[...prev, { name: "Room "+(roomSelected.length+1), adult: 1, child: 0 }])
+    setTotalAmount((prev)=> prev+10000)
+  };
+
+  const decrementCounter = () => {
+    if (counterValue > 0) {
+      setCounterValue(counterValue - 1);
+
+      setTotalAmount((prev)=> prev-10000)
+
+      const arr = [...roomSelected]
+      arr.pop()
+      setRoomSelected(arr)
+
+    } else {
+      toggleButton(); // Convert back to button when counter is less than 1
+    }
+  };
+
+  const buttonStyle = {
+    width: "50px",
+    height: "30px",
+  };
+
   const roomImages = [
-    '/assets/images/hotel.png',
-    '/assets/images/hotel1.png',
-    '/assets/images/hotel2.png',
-    '/assets/images/hotel3.png',
-    '/assets/images/hotel4.png',
-    '/assets/images/hotel5.png',
+    "/assets/images/hotel.png",
+    "/assets/images/hotel1.png",
+    "/assets/images/hotel2.png",
+    "/assets/images/hotel3.png",
+    "/assets/images/hotel4.png",
+    "/assets/images/hotel5.png",
   ];
 
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   }));
   // Function to open the modal and set the selected image index
@@ -89,10 +123,6 @@ function Room2({ totalAmount, setTotalAmount }) {
     }
   };
 
-
-
-
-
   const updateCounterAndTotal = () => {
     // This function updates the counter and total amount
     // You can also add logic to update the nested boxes here
@@ -107,30 +137,43 @@ function Room2({ totalAmount, setTotalAmount }) {
   // Create an array of nested boxes based on the count
   for (let i = 0; i < count; i++) {
     nestedBoxes.push(
-      <div className="nested-box" key={i} style={{ marginTop: `${nestedBoxHeight}px` }}>
+      <div
+        className="nested-box"
+        key={i}
+        style={{ marginTop: `${nestedBoxHeight}px` }}
+      >
         <p style={{ marginLeft: "-300px" }}>{`Room ${i + 1}`}</p>
-        <FormControl fullWidth style={{ width: "70px", height: "-5px", marginTop: "-50px" }}>
+        <FormControl
+          fullWidth
+          style={{ width: "70px", height: "-5px", marginTop: "-50px" }}
+        >
           <InputLabel id="demo-simple-select-label">adult</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             size="small"
             label="Age"
-
           >
             <MenuItem value={10}>0</MenuItem>
             <MenuItem value={20}>1</MenuItem>
             <MenuItem value={30}>1</MenuItem>
           </Select>
         </FormControl>
-        <FormControl fullWidth style={{ width: "70px", height: "-5px", marginTop: "-50px", marginLeft: "5px" }}>
+        <FormControl
+          fullWidth
+          style={{
+            width: "70px",
+            height: "-5px",
+            marginTop: "-50px",
+            marginLeft: "5px",
+          }}
+        >
           <InputLabel id="demo-simple-select-label">child</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             size="small"
             label="Age"
-
           >
             <MenuItem value={10}>0</MenuItem>
             <MenuItem value={20}>1</MenuItem>
@@ -145,81 +188,117 @@ function Room2({ totalAmount, setTotalAmount }) {
 
   //model css
   const modalStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     marginLeft: "400px",
     marginTop: "50px",
-    height: '80%', // Set your desired height here
-    width: '50%',  // Set your desired width here
+    height: "80%", // Set your desired height here
+    width: "50%", // Set your desired width here
   };
-
 
   return (
     <>
-
       <Grid container spacing={3}>
         <Grid item xs={7}>
-          <Item >
-            <div className='room-box'>
-              <img src="/assets/images/hotel.png" alt="" className="room-image" />
-              <div className='room-info'>
-                <div className='room-type-info'>
-                  <h4 style={{ whiteSpace: 'nowrap' }}>Deluxe Room</h4>
-                  <label >ROOM RATES EXCLUSIVE OF TAX</label><br />
-                  <label >MAX 5 Guests</label>
+          <Item>
+            <div className="room-box">
+              <img
+                src="/assets/images/hotel.png"
+                alt=""
+                className="room-image"
+              />
+              <div className="room-info">
+                <div className="room-type-info">
+                  <h4 style={{ whiteSpace: "nowrap" }}>Deluxe Room</h4>
+                  <label>ROOM RATES EXCLUSIVE OF TAX</label>
+                  <br />
+                  <label>MAX 5 Guests</label>
                 </div>
                 <div>
-                  <h5 >Rs.10000.00</h5>
-                  <p style={{ whiteSpace: 'nowrap', color: "black" }}>PER NIGHT</p>
-                  <p style={{ whiteSpace: 'nowrap', color: "green" }}>10 Rooms Left</p>
-                  <button onClick={showContainer} style={{ marginLeft: "", marginTop: "" }}>Add Rooms</button>
-
+                  <h5>Rs.10000.00</h5>
+                  <p style={{ whiteSpace: "nowrap", color: "black" }}>
+                    PER NIGHT
+                  </p>
+                  <p style={{ whiteSpace: "nowrap", color: "green" }}>
+                    10 Rooms Left
+                  </p>
+                  {/* <button
+                    onClick={showContainer}
+                    style={{ marginLeft: "", marginTop: "" }}
+                  >
+                    Add Rooms
+                  </button> */}
+                  {containerVisible ? (
+                    <div>
+                      <button onClick={decrementCounter} style={buttonStyle}>
+                        -
+                      </button>
+                      <input
+                        type="text"
+                        value={counterValue}
+                        readOnly
+                        
+                        style={buttonStyle}
+                      />
+                      <button onClick={incrementCounter} style={buttonStyle}>
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                  <button onClick={toggleButton} style={{height:"30px", width:"100px", borderRadius:"2px", background:"#acd037",
+                  color:"#fffff"}}>
+                      Add Rooms
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
             <div>
               {roomSelected.length > 0 &&
                 roomSelected.map((room, index) => {
+                  return (
+                    <>
+                      <div key={index} className="select-room">
+                        <h5>{room.name}</h5>
+                        <div className="">
+                          <label for="adult">Adult</label>
+                          <select id="adult">
+                            <option value={0}>0</option>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                          </select>
+                        </div>
 
-                  return <>
-                    <div>
-                      <h2>{room.name}</h2>
-                      <select value={room.adult}>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                      </select>
-                      <select value={room.child}>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                      </select>
-                    </div>
-                  </>
-                })
-              }
+                        <div>
+                          <label for="child">Children</label>
+                          <select value={room.child} id="child">
+                            <option value={0}>0</option>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                          </select>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
             </div>
           </Item>
         </Grid>
         <Grid item xs={4}>
-          <Item className='room-book'>
-
+          <Item className="room-book">
             <label className="">Booking Summary</label>
             <h5 className="date">Dates</h5>
             <label className="">Nights</label>
-            <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4> {/* Display the updated total amount */}
-            <a href="/booking"><button className="book-btn">Book</button></a>
-
+            <h4 className="">Total: Rs.{totalAmount.toFixed(2)}</h4>{" "}
+            {/* Display the updated total amount */}
+            <a href="/booking">
+              <button className="book-btn">Book</button>
+            </a>
           </Item>
         </Grid>
-
       </Grid>
     </>
-  )
+  );
 }
-export default Room2
-
-
-
-
+export default Room2;
