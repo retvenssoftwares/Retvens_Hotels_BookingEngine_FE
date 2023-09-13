@@ -38,7 +38,6 @@ function HotelDetail() {
         className="breadcrumb-main pb-20"
         style={{ backgroundImage: "url(assets/images/bg/bg1.jpg)" }}
       >
-        
         <div
           className="section-shape section-shape1 top-inherit bottom-0"
           style={{ backgroundImage: "url(assets/images/shape8.png)" }}
@@ -46,8 +45,6 @@ function HotelDetail() {
         <div className="breadcrumb-outer">
           <div className="container">
             <div className="breadcrumb-content">
-              <img src="https://source.unsplash.com/VWcPlbHglYc" alt=""
-              style={{display:"absolute"}} />
               <nav aria-label="breadcrumb" className="d-block">
                 <div
                   style={{
@@ -66,72 +63,71 @@ function HotelDetail() {
                       borderRadius: "50%",
                     }}
                   />
-                  <h4
+                  <h2
                     style={{
                       textAlign: "left",
-                      fontSize: "17px",
-                      fontWeight: "400",
+                      fontSize: "20px",
+                      fontWeight: "bolder",
+                      textColor: "#fffff",
                       lineHeight: "1.2",
                     }}
                   >
                     {hotelData.hotel_name}
-                  </h4>
+                  </h2>
+
+                  <div style={{ textAlign: "left" }}>
+                    <label
+                      className="mb-0"
+                      style={{
+                        color: "#f3f3f3",
+                        fontSize: "17px",
+                        textAlign: "left",
+                      }}
+                    >
+                      Address-
+                    </label>
+                    <label
+                      className="mb-0"
+                      style={{
+                        color: "#ffffff",
+                        fontSize: "17px",
+
+                        textAlign: "left",
+                      }}
+                    >
+                      {hotelData.hotel_address_line_1 + ",  "}
+                    </label>
+                    <label
+                      className="mb-0"
+                      style={{
+                        color: "#ffffff",
+                        fontSize: "17px",
+
+                        textAlign: "left",
+                      }}
+                    >
+                      {hotelData.hotel_address_line_2}
+                    </label>
+                  </div>
+                  <label
+                    style={{
+                      color: "#fff",
+                      textAlign: "left",
+                    }}
+                  >
+                    {hotelData.hotel_description}
+                  </label>
                 </div>
-                <img
-                  src={hotelData.hotel_logo}
-                  alt="image.png"
-                  height="200px"
-                  width="200px"
-                  style={{
-                    borderRadius: "50%",
-                  }}
-                />
-                <h4 className="mb-0" style={{}}>
-                  {hotelData.hotel_name}
-                </h4>
-                <label
-                  className="mb-0"
-                  style={{
-                    color: "#ACD037",
-                  }}
-                >
-                  Address-
-                </label>
-                <label
-                  className="mb-0"
-                  style={{
-                    color: "#ACD037",
-                  }}
-                >
-                  {hotelData.hotel_address_line_1}
-                </label>
-                <label
-                  className="mb-0"
-                  style={{
-                    color: "#ACD037",
-                  }}
-                >
-                  {hotelData.hotel_address_line_2}
-                </label>
               </nav>
             </div>
           </div>
           {/* <label className='ml-0' style={{ marginLeft: "-80px", marginTop: "60px", color:"#ACD037"  }}>description-</label> */}
-          <label
-            style={{
-              color: "#ACD037",
-              textAlign: "left",
-            }}
-          >
-            {hotelData.hotel_description}
-          </label>
         </div>
 
         <div className="dot-overlay" />
       </section>
 
-     
-
+    
       <div class="row d-flex align-items-center justify-content-between">
         <div class="col-lg-2 mb-2" style={{ marginLeft: "790px" }}>
           <div class="form-group">

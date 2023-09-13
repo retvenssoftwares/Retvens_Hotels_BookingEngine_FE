@@ -8265,3 +8265,11 @@ ul.sidebar-tags li a:hover {
   left: 0;
   bottom: 0;
 }
+.try {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}

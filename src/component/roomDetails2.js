@@ -206,7 +206,7 @@ function Room2({ totalAmount, setTotalAmount }) {
   const handleChange = () => {
     return
   }
-
+  
   return (
     <>
       <Grid container spacing={2} className="main-box">
@@ -346,6 +346,7 @@ function Room2({ totalAmount, setTotalAmount }) {
           )}
         </Grid>
       </Grid>
+      
 
     </>
   );
