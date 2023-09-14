@@ -8239,7 +8239,7 @@ ul.sidebar-tags li a:hover {
   width: 100%;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 15px #cccccc37;
+  /* box-shadow: 0 0 15px #cccccc37; */
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -8271,7 +8271,6 @@ ul.sidebar-tags li a:hover {
   border-radius: 10px;
   margin: 5px;
 }
-<<<<<<< HEAD
 .booking-text-field{
   width: 10px;
   border-radius: 2px;
@@ -8340,7 +8339,9 @@ ul.sidebar-tags li a:hover {
   margin-left: 20px; /* Adjust the margin value as needed */
 }
 
-
+hr.solid {
+  border-top: 3px solid #bbb;
+}
 
 
 

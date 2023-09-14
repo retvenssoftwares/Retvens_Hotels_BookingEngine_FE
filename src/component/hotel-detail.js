@@ -156,6 +156,7 @@ function HotelDetail() {
       </div>
 
       <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} />
+      {/* <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       {/* <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       <div id="back-to-top">
         <a href="#" />

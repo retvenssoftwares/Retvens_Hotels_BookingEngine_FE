@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import { Select, MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { Row, Col } from "reactstrap";
+// import Link from 'react-router-dom'
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 //import Paper from "@mui/material/Paper";
@@ -13,6 +14,7 @@ import Modal from "@mui/material/Modal"; // Import Modal component
 import Carousel from "react-material-ui-carousel"; // Import Carousel component
 import { Paper, Button } from "@mui/material";
 import BookingRooms from "./bookingRooms";
+import { Directions } from "@mui/icons-material";
 
 function Room2({ totalAmount, setTotalAmount }) {
   const [containerVisible, setContainerVisible] = useState(false);
@@ -208,7 +210,7 @@ function Room2({ totalAmount, setTotalAmount }) {
 
   return (
     <>
-      <Grid container spacing={2} className="main-box">
+      <Grid container spacing={2} className="main-box" style={{marginLeft:"2px"}}>
         <Grid item xs={7}>
           <Item>
             <div className="room-box">
@@ -247,8 +249,8 @@ function Room2({ totalAmount, setTotalAmount }) {
                 </div>
               </Modal>
               <div className="room-info">
-                <div className="room-type-info" style={{textAlign:"left"}}>
-                  <h4 style={{ whiteSpace: "nowrap"}}>Deluxe Room</h4>
+                <div className="room-type-info" style={{ textAlign: "left" }}>
+                  <h4 style={{ whiteSpace: "nowrap" }}>Deluxe Room</h4>
                   <label>ROOM RATES EXCLUSIVE OF TAX</label>
                   <br />
                   <label>MAX 5 Guests</label>
@@ -286,9 +288,7 @@ function Room2({ totalAmount, setTotalAmount }) {
                     <button
                       onClick={toggleButton}
                       className="add-room"
-                      style={{
-                      
-                      }}
+                      style={{}}
                     >
                       Add Room
                     </button>
@@ -353,23 +353,44 @@ function Room2({ totalAmount, setTotalAmount }) {
         <Grid item xs={4}>
           {totalAmount > 0 && (
             <Item className="room-book">
-              <div style={{margin:"10px"}}>
+              <div style={{ margin: "10px" }}>
+                <h3 style={{fontSize:"15px", textAlign:"left", alignItems:"center"}}>SHAHPURA HAVELI, SHAHPURA</h3>
+                <hr class="solid"/>
+              </div>
+              <div style={{display:"flex", justifyContent:"space-around", alignItems:"start"}}>
+                <div style={{textAlign:"left"}}>
+                  <h5>Delux Room</h5>
+                  <p>2 Nights</p>
+                  <p>1 Adult, 1 Child</p>
+                </div>
+                <div style={{textAlign:"right", alignItems:"center"}}>
+                  <h5>Rs 10000</h5>
+                  <p>2 Rooms</p>
+                </div>
+                <hr class="solid"/>
+              </div>
+           <a href="/booking">
+              <div style={{display:"flex", justifyContent:"space-around" , alignItems:"end", backgroundColor:"#272a3d",height:"45px"}}>
+                  <p style={{color:"white",fontSize:"20px",marginTop:"5px"}}>Pay</p>
+                  <p style={{color:"white"}}>Rs {totalAmount.toFixed(2)}</p>
+                </div>
+                </a>
+              {/* <div style={{ margin: "10px" }}>
                 <h3 className="" style={{ fontSize: "20sp" }}>
                   Booking Summary
                 </h3>
-                {/* <h5 className="date" style={{ textAlign: "left" }}>
-                  Dates
-                </h5> */}
-                <h5 className="" style={{ textAlign: "left", marginTop:"15px" }}>
+                <h5
+                  className=""
+                  style={{ textAlign: "left", marginTop: "15px" }}
+                >
                   Nights
                 </h5>
-                {/* Display the updated total amount */}
                 <div
                   style={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    marginBottom:"15px"
+                    marginBottom: "15px",
                   }}
                 >
                   <h4 className="" style={{ textAlign: "left" }}>
@@ -382,7 +403,7 @@ function Room2({ totalAmount, setTotalAmount }) {
                 <a href="/booking">
                   <button className="book-btn">Book</button>
                 </a>
-              </div>
+              </div> */}
             </Item>
           )}
         </Grid>
