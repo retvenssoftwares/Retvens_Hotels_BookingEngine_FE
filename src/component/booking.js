@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Footer from "./footer"
 import Navbar from "./navbar"
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -82,7 +83,7 @@ function Booking() {
                                 <p className="mb-0">Deluxe Cottages - Deluxe Cottages CP</p>
                                 <p className="mb-0">Adult-0,child-0</p>
                                 <div style={{padding:"20px", gap:"15px" ,display:"flex", flexDirection:"row"}}>
-                                <button className="edit-form  " onClick={handleRemoveClick}>EDIT</button>
+                               <Link to="/hotel-detail/:hotel_id"><button className="edit-form">EDIT</button></Link> 
                                 <button className="remove-form" onClick={handleRemoveClick}>REMOVE</button>
                                 </div>
                                 

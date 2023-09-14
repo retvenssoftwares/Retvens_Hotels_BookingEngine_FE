@@ -14,8 +14,10 @@ import Room2 from "./roomDetails2";
 function HotelDetail() {
   const { hotel_id } = useParams();
   const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
-
+  const [checkin, setCheckin] = useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0])
+  const [checkout, setCheckout] = useState(new Date(new Date().getTime() + 2*24 * 60 * 60 * 1000).toISOString().split('T')[0])
   const [hotelData, setHotelData] = useState({});
+  const [roomData, setRoomData] = useState([]);
 
   useEffect(() => {
     // Fetch hotel data from the API
@@ -28,9 +30,29 @@ function HotelDetail() {
       .catch((error) => {
         console.error("Error fetching hotel data:", error);
       });
-  }, [hotel_id]);
+  }, []);
 
   // Define your image data here (replace with actual image URLs)
+  
+  useEffect(() => {
+
+    // Replace 'apiEndpoint' with your actual API endpoint
+    fetch(`http://localhost:8000/api/get/hotelById/${hotel_id}/${checkin}/${checkout}`)
+      .then((response) => {
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setRoomData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, [checkin,checkout])
 
   return (
     <div style={{ backgroundColor: "#f0f3f6", minHeight: "100%" }}>
@@ -53,14 +75,14 @@ function HotelDetail() {
                     gap: "17px",
                     justifyContent: "flex-start",
                     alignItems:"start",
-                    marginTop:"-50px"
+                    marginTop:"-60px"
                   }}
                 >
                   <img
-                    src={hotelData.hotel_logo}
+                    src={roomData.hotel_logo}
                     alt="image.png"
-                    height="200px"
-                    width="200px"
+                    height="150px"
+                    width="150px"
                     style={{
                       borderRadius: "50%",
                     }}
@@ -74,7 +96,7 @@ function HotelDetail() {
                       lineHeight: "1.2",
                     }}
                   >
-                    {hotelData.hotel_name}
+                    {roomData.hotel_name}
                   </h2>
 
                   <div style={{ textAlign: "left" }}>
@@ -97,7 +119,7 @@ function HotelDetail() {
                         textAlign: "left",
                       }}
                     >
-                      {hotelData.hotel_address_line_1 + ",  "}
+                      {roomData.hotel_address_line_1 + ",  "}
                     </label>
                     <label
                       className="mb-0"
@@ -108,7 +130,7 @@ function HotelDetail() {
                         textAlign: "left",
                       }}
                     >
-                      {hotelData.hotel_address_line_2}
+                      {roomData.hotel_address_line_2}
                     </label>
                   </div>
                   <label
@@ -117,7 +139,7 @@ function HotelDetail() {
                       textAlign: "left",
                     }}
                   >
-                    {hotelData.hotel_description}
+                    {roomData.hotel_description}
                   </label>
                 </div>
               </nav>
@@ -135,7 +157,7 @@ function HotelDetail() {
           <div class="form-group">
             <label class="checkIn-text">Check-in</label>
             <div class="input-box">
-              <input type="date" name="date" />
+              <input type="date" name="date" value={checkin} onChange={(e) => setCheckin(e.target.value)} />
             </div>
           </div>
         </div>
@@ -143,7 +165,7 @@ function HotelDetail() {
           <div class="form-group">
             <label class="checkIn-text">Check-out</label>
             <div class="input-box">
-              <input type="date" name="date" />
+              <input type="date" name="date" value={checkout} onChange={(e) => setCheckout(e.target.value)}  />
             </div>
           </div>
         </div>
@@ -157,7 +179,7 @@ function HotelDetail() {
         </div>
       </div>
 
-      <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} />
+      <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} roomData={roomData.room_availability} />
       {/* <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       <div id="back-to-top">
         <a href="#" />

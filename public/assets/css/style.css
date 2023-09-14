@@ -8230,7 +8230,7 @@ ul.sidebar-tags li a:hover {
   width: 100%;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 15px #cccccc37;
+  /* box-shadow: 0 0 15px #cccccc37;/ */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -8238,8 +8238,9 @@ ul.sidebar-tags li a:hover {
 .room-box {
   width: 100%;
   margin: 10px;
+  margin-bottom: 30px;
   border-radius: 5px;
-  box-shadow: 0 0 15px #cccccc37;
+  /* box-shadow: 0 0 15px #cccccc37; */
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -8289,7 +8290,7 @@ ul.sidebar-tags li a:hover {
 .text-input {
   width: 100%; /* Adjust the width as needed */
   padding: 10px;
-  border: 2px solid #ccc;
+  border: 4px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   transition: border-color 0.2s; /* Add a transition for smooth animation */
@@ -8335,6 +8336,11 @@ ul.sidebar-tags li a:hover {
   background-color: #acd037;
 }
 
+.payment-button:hover {
+  background-color: #272a3d;
+  color: white
+}
+
 /* Add this to your CSS stylesheet */
 .margin-left-text {
   margin-left: 20px; /* Adjust the margin value as needed */
@@ -8358,3 +8364,6 @@ ul.sidebar-tags li a:hover {
 
 
 
+hr.solid {
+  border-top: 5px solid #bbb;
+}

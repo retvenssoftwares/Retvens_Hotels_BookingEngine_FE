@@ -1,66 +1,38 @@
 import React from "react";
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField'
 
-function RoomBooking(){
+function RoomBooking({totalAmount}) {
 
-  let timer;
 
-  document.addEventListener('input', e => {
-    const el = e.target;
-    
-    if( el.matches('[data-color]') ) {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        document.documentElement.style.setProperty(`--color-${el.dataset.color}`, el.value);
-      }, 100)
-    }
-  })
- 
-  
-  const StyledInput = styled("input")({
-    width: "10%", // Set the width to 100% to make it span the container
-    borderRadius: "8px", // Adjust the border radius as needed
-    padding: "10px", // Add padding for better appearance
-    border: "1px solid #ccc", // Add a border for visual separation
-    fontSize: "16px", // Set the font size
-  });
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      }));
-    return(
-<>
- <Grid container spacing={3}>
-        <Grid item xs={7}>
-          {/* <Item > */}
-            <div class="booing-field">
-            <StyledInput className="booking-text-field" type="text"  placeholder="First Name" width={10}/>
-            </div>
-   
-         
-
-{/*          
-          </Item> */}
-        </Grid>
-        <Grid item xs={4}>
-          <Item>
-
+  return (
+    <>
+      
+              <div style={{ margin: "10px" }}>
+                <h3 style={{fontSize:"15px", textAlign:"left", alignItems:"center"}}>SHAHPURA HAVELI, SHAHPURA</h3>
+                <hr class="solid"/>
+              </div>
+              <div style={{display:"flex", justifyContent:"space-around", alignItems:"start"}}>
+                <div style={{textAlign:"left"}}>
+                  <h5>Delux Room</h5>
+                  <p>2 Nights</p>
+                  <p>1 Adult, 1 Child</p>
+                </div>
+                <div style={{textAlign:"right", alignItems:"center"}}>
+                  <h5>Rs 10000</h5>
+                  <p>2 Rooms</p>
+                </div>
+                <hr class="solid"/>
+              </div>
            
-          </Item>
-        </Grid>
+              <div style={{display:"flex", justifyContent:"space-around" , alignItems:"end", backgroundColor:"#272a3d",height:"45px"}}>
+                  <p style={{color:"white",fontSize:"20px",marginTop:"5px"}}>Pay</p>
+                  <p style={{color:"white"}}>Rs {totalAmount}</p>
+                </div>
+          
+              
+    </>
 
-      </Grid> 
-      </>
 
-
-    );
+  );
 }
 export default RoomBooking
 

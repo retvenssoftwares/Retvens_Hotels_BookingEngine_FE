@@ -13,8 +13,12 @@ import Modal from "@mui/material/Modal"; // Import Modal component
 import Carousel from "react-material-ui-carousel"; // Import Carousel component
 import { Paper, Button } from "@mui/material";
 import BookingRooms from "./bookingRooms";
+import Booking from './booking'
 
-function Room2({ totalAmount, setTotalAmount }) {
+function Room2({ totalAmount, setTotalAmount, roomData }) {
+  const { hotel_id } = useParams();
+  const checkinDate = '2023-09-14'; // Replace with your actual check-in date
+  const checkoutDate = '2023-09-15'; // Replace with your actual check-out date
   const [containerVisible, setContainerVisible] = useState(false);
   const [counterValue, setCounterValue] = useState(0);
   const [modalOpen, setModalOpen] = useState(false); // State to control modal open/close
@@ -23,8 +27,7 @@ function Room2({ totalAmount, setTotalAmount }) {
     // { name: "Room 1", adult: 1, child: 0 },
   ]);
 
-  console.log(totalAmount);
-  console.log(typeof totalAmount);
+
   const toggleButton = () => {
     setContainerVisible(!containerVisible);
   };
@@ -95,101 +98,11 @@ function Room2({ totalAmount, setTotalAmount }) {
       prevIndex === 0 ? roomImages.length - 1 : prevIndex - 1
     );
   };
-  const [count, setCount] = useState(1); // Initialize room count
-  const [addRoomButtonVisible, setAddRoomButtonVisible] = useState(true);
-  const roomRate = 10000; // Set the room rate here
+ 
 
-  const showContainer = () => {
-    if (totalAmount === 0) {
-      setTotalAmount(roomRate); // Set the initial total amount when the "Add Room" button is clicked for the first time
-    }
-    setCount(1);
-    setContainerVisible((prev) => true);
-    setAddRoomButtonVisible(false);
-    updateCounterAndTotal();
-  };
 
-  const incrementCount = () => {
-    setCount(count + 1);
-    setTotalAmount(totalAmount + roomRate); // Increment total amount
-    updateCounterAndTotal();
-  };
-  const decrementCount = () => {
-    if (count > 1) {
-      setCount(count - 1);
-      setTotalAmount(totalAmount - roomRate); // Decrement total amount
-      updateCounterAndTotal();
-    } else {
-      // If count is zero, hide the container and show the button
-      setContainerVisible(false);
-      setAddRoomButtonVisible(true);
-      setTotalAmount(0); // Set total amount to 0
-      updateCounterAndTotal(); // Update total amount
-    }
-  };
 
-  const updateCounterAndTotal = () => {
-    // This function updates the counter and total amount
-    // You can also add logic to update the nested boxes here
-  };
 
-  const addNestedBox = () => {
-    // Function to add a new nested-box
-    // You can add logic to create and append new nested boxes here
-  };
-  const nestedBoxes = [];
-  const nestedBoxHeight = -1;
-  // Create an array of nested boxes based on the count
-  for (let i = 0; i < count; i++) {
-    nestedBoxes.push(
-      <div
-        className="nested-box"
-        key={i}
-        style={{ marginTop: `${nestedBoxHeight}px` }}
-      >
-        <p style={{ marginLeft: "-300px" }}>{`Room ${i + 1}`}</p>
-        <FormControl
-          fullWidth
-          style={{ width: "70px", height: "-5px", marginTop: "-50px" }}
-        >
-          <InputLabel id="demo-simple-select-label">adult</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            size="small"
-            label="Age"
-          >
-            <MenuItem value={10}>0</MenuItem>
-            <MenuItem value={20}>1</MenuItem>
-            <MenuItem value={30}>1</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl
-          fullWidth
-          style={{
-            width: "70px",
-            height: "-5px",
-            marginTop: "-50px",
-            marginLeft: "5px",
-          }}
-        >
-          <InputLabel id="demo-simple-select-label">child</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            size="small"
-            label="Age"
-          >
-            <MenuItem value={10}>0</MenuItem>
-            <MenuItem value={20}>1</MenuItem>
-            <MenuItem value={30}>2</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-    );
-  }
-
-  const categoryItemHeight = 140 + count * 60 + 30;
 
   //model css
   const modalStyles = {
@@ -208,9 +121,12 @@ function Room2({ totalAmount, setTotalAmount }) {
 
   return (
     <>
-      <Grid container spacing={2} className="main-box">
+      <Grid container spacing={2} className="main-box" style={{marginLeft:"2px"}}>
         <Grid item xs={7}>
           <Item>
+          <div  className="">
+
+          {roomData && roomData.map((room, index) => (
             <div className="room-box">
               <div
                 className="col-lg-4"
@@ -223,32 +139,10 @@ function Room2({ totalAmount, setTotalAmount }) {
                   className="room-image"
                 />
               </div>
-              <Modal open={modalOpen} onClose={closeModal} style={modalStyles}>
-                <div className="modal-content">
-                  <Carousel
-                    autoPlay={false}
-                    animation="fade"
-                    index={selectedImageIndex}
-                  >
-                    {roomImages.map((image, index) => (
-                      <Paper key={index} elevation={3}>
-                        <img
-                          src={image}
-                          alt={`Room ${index + 1}`}
-                          style={{ width: "100%" }}
-                        />
-                      </Paper>
-                    ))}
-                  </Carousel>
-                  <div className="modal-controls">
-                    <Button onClick={prevImage}>Previous</Button>
-                    <Button onClick={nextImage}>Next</Button>
-                  </div>
-                </div>
-              </Modal>
+         
               <div className="room-info">
                 <div className="room-type-info" style={{textAlign:"left"}}>
-                  <h4 style={{ whiteSpace: "nowrap"}}>Deluxe Room</h4>
+                  <h4 style={{ whiteSpace: "nowrap"}}>{room.Roomtype_Name}</h4>
                   <label>ROOM RATES EXCLUSIVE OF TAX</label>
                   <br />
                   <label>MAX 5 Guests</label>
@@ -296,6 +190,9 @@ function Room2({ totalAmount, setTotalAmount }) {
                 </div>
               </div>
             </div>
+          ))}
+            </div>
+
             <div>
               {roomSelected.length > 0 &&
                 roomSelected.map((room, index) => {
@@ -357,13 +254,11 @@ function Room2({ totalAmount, setTotalAmount }) {
                 <h3 className="" style={{ fontSize: "20sp" }}>
                   Booking Summary
                 </h3>
-                {/* <h5 className="date" style={{ textAlign: "left" }}>
-                  Dates
-                </h5> */}
+             
                 <h5 className="" style={{ textAlign: "left", marginTop:"15px" }}>
                   Nights
                 </h5>
-                {/* Display the updated total amount */}
+               
                 <div
                   style={{
                     display: "flex",
@@ -387,6 +282,29 @@ function Room2({ totalAmount, setTotalAmount }) {
           )}
         </Grid>
       </Grid>
+      <Modal open={modalOpen} onClose={closeModal} style={modalStyles}>
+                <div className="modal-content">
+                  <Carousel
+                    autoPlay={false}
+                    animation="fade"
+                    index={selectedImageIndex}
+                  >
+                    {roomImages.map((image, index) => (
+                      <Paper key={index} elevation={3}>
+                        <img
+                          src={image}
+                          alt={`Room ${index + 1}`}
+                          style={{ width: "100%" }}
+                        />
+                      </Paper>
+                    ))}
+                  </Carousel>
+                  <div className="modal-controls">
+                    <Button onClick={prevImage}>Previous</Button>
+                    <Button onClick={nextImage}>Next</Button>
+                  </div>
+                </div>
+              </Modal>
     </>
   );
 }
