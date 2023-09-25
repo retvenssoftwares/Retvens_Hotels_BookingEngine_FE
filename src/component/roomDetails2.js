@@ -15,10 +15,7 @@ import { Paper, Button } from "@mui/material";
 import BookingRooms from "./bookingRooms";
 import Booking from './booking'
 
-function Room2({ totalAmount, setTotalAmount, roomData }) {
-  const { hotel_id } = useParams();
-  const checkinDate = '2023-09-14'; // Replace with your actual check-in date
-  const checkoutDate = '2023-09-15'; // Replace with your actual check-out date
+function Room2({ totalAmount, setTotalAmount, hotelData }) {
   const [containerVisible, setContainerVisible] = useState(false);
   const [counterValue, setCounterValue] = useState(0);
   const [modalOpen, setModalOpen] = useState(false); // State to control modal open/close
@@ -27,7 +24,7 @@ function Room2({ totalAmount, setTotalAmount, roomData }) {
     // { name: "Room 1", adult: 1, child: 0 },
   ]);
 
-
+  console.log(hotelData);
   const toggleButton = () => {
     setContainerVisible(!containerVisible);
   };
@@ -118,166 +115,244 @@ function Room2({ totalAmount, setTotalAmount, roomData }) {
   const handleChange = () => {
     return;
   };
+  function calculateTotalAdults() {
+    // Use the reduce method to sum up the 'adult' property of each object
+    const totalAdults = roomSelected.reduce((accumulator, currentValue) => {
+      // Check if the 'adult' property exists in the current object and is a number
+      if (currentValue.adult && typeof currentValue.adult === "number") {
+        return accumulator + currentValue.adult;
+      } else {
+        return accumulator;
+      }
+    }, 0); // Initialize the accumulator to 0
 
+    return totalAdults;
+  }
+  function calculateTotalChild() {
+    // Use the reduce method to sum up the 'adult' property of each object
+    const totalAdults = roomSelected.reduce((accumulator, currentValue) => {
+      // Check if the 'adult' property exists in the current object and is a number
+      if (currentValue.child && typeof currentValue.child === "number") {
+        return accumulator + currentValue.child;
+      } else {
+        return accumulator;
+      }
+    }, 0); // Initialize the accumulator to 0
+
+    return totalAdults;
+  }
+  console.log(hotelData);
   return (
     <>
-      <Grid container spacing={2} className="main-box" style={{marginLeft:"2px"}}>
+      <Grid
+        container
+        spacing={2}
+        className="main-box"
+        style={{ marginLeft: "2px" }}
+      >
         <Grid item xs={7}>
           <Item>
-          <div  className="">
-
-          {roomData && roomData.map((room, index) => (
-            <div className="room-box">
-              <div
-                className="col-lg-4"
-                onClick={() => openModal(0)}
-                style={{ cursor: "pointer" }}
-              >
-                <img
-                  src="/assets/images/hotel.png"
-                  alt=""
-                  className="room-image"
-                />
-              </div>
-         
-              <div className="room-info">
-                <div className="room-type-info" style={{textAlign:"left"}}>
-                  <h4 style={{ whiteSpace: "nowrap"}}>{room.Roomtype_Name}</h4>
-                  <label>ROOM RATES EXCLUSIVE OF TAX</label>
-                  <br />
-                  <label>MAX 5 Guests</label>
+            <div>
+              <div className="room-box">
+                <div
+                  className="col-lg-4"
+                  onClick={() => openModal(0)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img
+                    src="/assets/images/hotel.png"
+                    alt=""
+                    className="room-image"
+                  />
                 </div>
-                <div>
-                  <h5>Rs.10000.00</h5>
-                  <p style={{ whiteSpace: "nowrap", color: "black" }}>
-                    PER NIGHT
-                  </p>
-                  <p style={{ whiteSpace: "nowrap", color: "green" }}>
-                    10 Rooms Left
-                  </p>
-                  {/* <button
+                <Modal
+                  open={modalOpen}
+                  onClose={closeModal}
+                  style={modalStyles}
+                >
+                  <div className="modal-content">
+                    <Carousel
+                      autoPlay={false}
+                      animation="fade"
+                      index={selectedImageIndex}
+                    >
+                      {roomImages.map((image, index) => (
+                        <Paper key={index} elevation={3}>
+                          <img
+                            src={image}
+                            alt={`Room ${index + 1}`}
+                            style={{ width: "100%" }}
+                          />
+                        </Paper>
+                      ))}
+                    </Carousel>
+                    <div className="modal-controls">
+                      <Button onClick={prevImage}>Previous</Button>
+                      <Button onClick={nextImage}>Next</Button>
+                    </div>
+                  </div>
+                </Modal>
+                <div className="room-info">
+                  <div className="room-type-info" style={{ textAlign: "left" }}>
+                    <h4 style={{ whiteSpace: "nowrap" }}>{}</h4>
+                    <label>ROOM RATES EXCLUSIVE OF TAX</label>
+                    <br />
+                    <label>MAX 5 Guests</label>
+                  </div>
+                  <div>
+                    <h5>Rs.10000.00</h5>
+                    <p style={{ whiteSpace: "nowrap", color: "black" }}>
+                      PER NIGHT
+                    </p>
+                    <p style={{ whiteSpace: "nowrap", color: "green" }}>
+                      10 Rooms Left
+                    </p>
+                    {/* <button
                     onClick={showContainer}
                     style={{ marginLeft: "", marginTop: "" }}
                   >
                     Add Rooms
                   </button> */}
-                  {containerVisible ? (
-                    <div>
-                      <button onClick={decrementCounter} style={buttonStyle}>
-                        -
+                    {containerVisible ? (
+                      <div>
+                        <button onClick={decrementCounter} style={buttonStyle}>
+                          -
+                        </button>
+                        <input
+                          type="text"
+                          value={counterValue}
+                          readOnly
+                          style={buttonStyle}
+                        />
+                        <button onClick={incrementCounter} style={buttonStyle}>
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={toggleButton}
+                        className="add-room"
+                        style={{}}
+                      >
+                        Add Room
                       </button>
-                      <input
-                        type="text"
-                        value={counterValue}
-                        readOnly
-                        style={buttonStyle}
-                      />
-                      <button onClick={incrementCounter} style={buttonStyle}>
-                        +
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={toggleButton}
-                      className="add-room"
-                      style={{
-                      
-                      }}
-                    >
-                      Add Room
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-            </div>
+              <div>
+                {roomSelected.length > 0 &&
+                  roomSelected.map((room, index) => {
+                    const handleChange = (event) => {
+                      const { name, value } = event.target;
+                      setRoomSelected((prevRooms) =>
+                        prevRooms.map((prevRoom, prevIndex) =>
+                          prevIndex === index
+                            ? { ...prevRoom, [name]: parseInt(value) }
+                            : prevRoom
+                        )
+                      );
+                    };
 
-            <div>
-              {roomSelected.length > 0 &&
-                roomSelected.map((room, index) => {
-                  const handleChange = (event) => {
-                    const { name, value } = event.target;
-                    setRoomSelected((prevRooms) =>
-                      prevRooms.map((prevRoom, prevIndex) =>
-                        prevIndex === index
-                          ? { ...prevRoom, [name]: parseInt(value) }
-                          : prevRoom
-                      )
+                    return (
+                      <div key={index} className="select-room">
+                        <h5>{room.name}</h5>
+                        <div className="">
+                          <label htmlFor="adult">Adult</label>
+                          <select
+                            name="adult"
+                            value={room.adult}
+                            onChange={handleChange}
+                            id={`adult-${index}`} // Add a unique ID
+                          >
+                            {[0, 1, 2].map((value) => (
+                              <option key={value} value={value}>
+                                {value}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label htmlFor="child">Children</label>
+                          <select
+                            name="child"
+                            value={room.child}
+                            onChange={handleChange}
+                            id={`child-${index}`} // Add a unique ID
+                          >
+                            {[0, 1, 2].map((value) => (
+                              <option key={value} value={value}>
+                                {value}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
                     );
-                  };
-
-                  return (
-                    <div key={index} className="select-room">
-                      <h5>{room.name}</h5>
-                      <div className="">
-                        <label htmlFor="adult">Adult</label>
-                        <select
-                          name="adult"
-                          value={room.adult}
-                          onChange={handleChange}
-                          id={`adult-${index}`} // Add a unique ID
-                        >
-                          {[0, 1, 2].map((value) => (
-                            <option key={value} value={value}>
-                              {value}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label htmlFor="child">Children</label>
-                        <select
-                          name="child"
-                          value={room.child}
-                          onChange={handleChange}
-                          id={`child-${index}`} // Add a unique ID
-                        >
-                          {[0, 1, 2].map((value) => (
-                            <option key={value} value={value}>
-                              {value}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  );
-                })}
+                  })}
+              </div>
             </div>
           </Item>
         </Grid>
         <Grid item xs={4}>
           {totalAmount > 0 && (
             <Item className="room-book">
-              <div style={{margin:"10px"}}>
-                <h3 className="" style={{ fontSize: "20sp" }}>
-                  Booking Summary
+              <div style={{ margin: "10px" }}>
+                <h3
+                  style={{
+                    fontSize: "15px",
+                    textAlign: "left",
+                    alignItems: "center",
+                  }}
+                >
+                  SHAHPURA HAVELI, SHAHPURA
                 </h3>
-             
-                <h5 className="" style={{ textAlign: "left", marginTop:"15px" }}>
-                  Nights
-                </h5>
-               
+                <hr class="solid" />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "start",
+                }}
+              >
+                <div style={{ textAlign: "left" }}>
+                  <h5>Delux Room</h5>
+                  <p>Nights</p>
+                  <p>
+                    {calculateTotalAdults()} Adult, {calculateTotalChild()}{" "}
+                    Child
+                  </p>
+                </div>
+                <div style={{ textAlign: "right", alignItems: "center" }}>
+                  <h5>Rs 10000</h5>
+                  <p>{roomSelected.length} Rooms</p>
+                </div>
+                <hr class="solid" />
+              </div>
+              <a href="/booking" class="text-decoration-none">
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    marginBottom:"15px"
+                    justifyContent: "space-around",
+                    alignItems: "end",
+                    backgroundColor: "#272a3d",
+                    height: "45px",
                   }}
                 >
-                  <h4 className="" style={{ textAlign: "left" }}>
-                    Total:{" "}
-                  </h4>
-                  <h4 className="" style={{ textAlign: "left" }}>
-                    Rs.{totalAmount.toFixed(2)}
-                  </h4>
+                  <p
+                    style={{
+                      color: "white",
+                      fontSize: "20px",
+                      marginTop: "5px",
+                    }}
+                  >
+                    Pay
+                  </p>
+                  <p style={{ color: "white" }}>Rs {totalAmount.toFixed(2)}</p>
                 </div>
-                <a href="/booking">
-                  <button className="book-btn">Book</button>
-                </a>
-              </div>
+              </a>
             </Item>
           )}
         </Grid>

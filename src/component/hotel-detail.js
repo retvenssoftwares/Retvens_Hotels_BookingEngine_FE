@@ -14,14 +14,44 @@ import Room2 from "./roomDetails2";
 function HotelDetail() {
   const { hotel_id } = useParams();
   const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
-  const [checkin, setCheckin] = useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0])
-  const [checkout, setCheckout] = useState(new Date(new Date().getTime() + 2*24 * 60 * 60 * 1000).toISOString().split('T')[0])
-  const [hotelData, setHotelData] = useState({});
-  const [roomData, setRoomData] = useState([]);
+
+  const [hotelData, setHotelData] = useState([]);
+
+  const [checkin, setCheckin] = useState(
+    new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+  );
+  const [checkout, setCheckout] = useState(
+    new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Replace 'apiEndpoint' with your actual API endpoint
+        const response = await fetch(
+          `http://localhost:8000/api/get/hotelById/${hotel_id}/${checkin}/${checkout}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+    
+        setHotelData(data);
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [checkin, checkout, hotel_id, setHotelData]);
+
 
   useEffect(() => {
     // Fetch hotel data from the API
-    fetch(`http://localhost:8000/api/get/hotelById/${hotel_id}`)
+    fetch(`http://localhost:8000/api/get/hotelById/${hotel_id}/9/9`)
       .then((response) => response.json())
       .then((data) => {
         // Update the state with the fetched data
@@ -157,7 +187,9 @@ function HotelDetail() {
           <div class="form-group">
             <label class="checkIn-text">Check-in</label>
             <div class="input-box">
-              <input type="date" name="date" value={checkin} onChange={(e) => setCheckin(e.target.value)} />
+              <input type="date" name="date"  value={checkin}
+              onChange={(e) => setCheckin(e.target.value)}
+  />
             </div>
           </div>
         </div>
@@ -165,7 +197,9 @@ function HotelDetail() {
           <div class="form-group">
             <label class="checkIn-text">Check-out</label>
             <div class="input-box">
-              <input type="date" name="date" value={checkout} onChange={(e) => setCheckout(e.target.value)}  />
+              <input type="date" name="date"     value={checkout}
+              onChange={(e) => setCheckout(e.target.value)}
+  />
             </div>
           </div>
         </div>
@@ -179,7 +213,8 @@ function HotelDetail() {
         </div>
       </div>
 
-      <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} roomData={roomData.room_availability} />
+      <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} hotelData={hotelData.room_availability} />
+      {/* <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       {/* <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
       <div id="back-to-top">
         <a href="#" />
