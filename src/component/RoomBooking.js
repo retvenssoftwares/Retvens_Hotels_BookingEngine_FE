@@ -34,9 +34,4 @@ function RoomBooking({totalAmount}) {
 
   );
 }
-export default RoomBooking
-
-
-
-
-
+export default RoomBooking;

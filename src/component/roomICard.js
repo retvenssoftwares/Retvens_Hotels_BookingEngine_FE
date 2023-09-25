@@ -106,7 +106,7 @@ const RoomCardData = ({ data  }) => {
           {roomSelected.length > 0 &&
             roomSelected.map((room, index) => {
               const handleChange = (event) => {
-                const { name, value } = event.target;
+                const { name, value } = event.target; 
                 setRoomSelected((prevRooms) =>
                   prevRooms.map((prevRoom, prevIndex) =>
                     prevIndex === index
