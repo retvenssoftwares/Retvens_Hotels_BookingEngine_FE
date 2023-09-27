@@ -12,10 +12,10 @@ function About() {
             <div className="breadcrumb-content text-center">
               <h1 className="mb-3">About Us</h1>
               <nav aria-label="breadcrumb" className="d-block">
-                <ul className="breadcrumb">
+                {/* <ul className="breadcrumb">
                   <li className="breadcrumb-item"><a href="#">Home</a></li>
                   <li className="breadcrumb-item active" aria-current="page">About Us</li>
-                </ul>
+                </ul> */}
               </nav>
             </div>
           </div>

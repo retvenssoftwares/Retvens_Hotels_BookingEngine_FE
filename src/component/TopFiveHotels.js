@@ -4,7 +4,7 @@
         const [hotels, setHotels] = useState([]);
         useEffect(() => {
             // Fetch data from the API
-            fetch('http://localhost:8000/api/get/top_eight_hotels_booking')
+            fetch('http://localhost:8000/api/get/hotels')
               .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -39,7 +39,7 @@
                   <img src={hotel.hotel_cover_photo} alt={hotel.name} height="400px" />
                   <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
                     <div className="trend-content-title">
-                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">{hotel.country}</a></h5>
+                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">{hotel.hotel_country}</a></h5>
                       <h3 className="mb-0 white">{hotel.city}</h3>
                     </div>
                     <span className="white bg-theme p-1 px-2 rounded">{hotel.tours} Tours</span>

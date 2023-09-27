@@ -5,14 +5,14 @@ import TopHotel from "./TopFiveHotels";
 import Footer from "./footer";
 
 function Home() {
-  const options = [
-    { value: '1', label: 'Destination' },
-    { value: '2', label: 'Argentina' },
-    { value: '3', label: 'Belgium' },
-    { value: '4', label: 'Canada' },
-    { value: '5', label: 'Denmark' },
-    // Add more options as needed
-  ];
+  // const options = [
+  //   { value: '1', label: 'Destination' },
+  //   { value: '2', label: 'Argentina' },
+  //   { value: '3', label: 'Belgium' },
+  //   { value: '4', label: 'Canada' },
+  //   { value: '5', label: 'Denmark' },
+  //   // Add more options as needed
+  // ];
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -21,7 +21,7 @@ function Home() {
   };
 
   const customStyles = {
-    height:"10%",
+    height: "10%",
     control: (provided) => ({
       ...provided,
       width: '620px', // Set the width as needed
@@ -49,7 +49,7 @@ function Home() {
                   <div class="book-form">
                     <div class="row d-flex align-items-center justify-content-between">
                       <div class="col-lg-12 mb-2">
-                        <div class="form-group">
+                        {/* <div class="form-group">
                           <div className="input-box">
                             <Select
                               value={selectedOption}
@@ -59,8 +59,8 @@ function Home() {
                               placeholder="Select destination"
                               styles={customStyles}
                             />
-                          </div> 
-                        </div>
+                          </div>
+                        </div> */}
                       </div>
                       {/* <div class="col-lg-6 mb-2">
                         <div class="form-group">
@@ -89,8 +89,8 @@ function Home() {
 
                       <div class="col-lg-12">
                         <div class="form-group mb-0 text-center">
-                          <a href="#" class="nir-btn w-100"><i class="fa fa-search mr-2"></i> Search
-                            Now</a>
+                          <a href="/hotel-list" class="nir-btn w-100" >Explore
+                            Hotel</a>
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@ function Home() {
           </div>
         </div>
       </section>
-     
+
       <section className="about-us pt-0" style={{ backgroundImage: 'url(images/bg/bg-trans.png)' }}>
         <div className="container">
           <div className="about-image-box">
@@ -184,7 +184,102 @@ function Home() {
       </section>
       {/* about-us ends */}
       {/* best tour Starts */}
-  <TopHotel/>
+      {/* <TopHotel/> */}
+      <section className="trending pb-5 pt-0">
+        <div className="container">
+          <div className="section-title mb-6 w-50 mx-auto text-center">
+            <h4 className="mb-1 theme1">Top Hotels</h4>
+            <h2 className="mb-1">Explore <span className="theme">Top Hotels</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            </p>
+          </div>
+          <div className="row align-items-center">
+            <div className="col-lg-5 mb-4">
+              <div className="trend-item1">
+                <div className="trend-image position-relative rounded">
+                  <img src="/assets/images/hotel1.png" alt="image" height="650px" />
+                  <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                    <div className="trend-content-title">
+                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">England</a></h5>
+                      <h3 className="mb-0 white">London</h3>
+                    </div>
+                    <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
+                  </div>
+                  <div className="color-overlay" />
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-7">
+              <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
+                  <div className="trend-item1">
+                    <div className="trend-image position-relative rounded">
+                      <img src="/assets/images/hotel2.png" alt="image" height="300px" />
+                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                        <div className="trend-content-title">
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Italy</a>
+                          </h5>
+                          <h3 className="mb-0 white">Caspian Valley</h3>
+                        </div>
+                        <span className="white bg-theme p-1 px-2 rounded">18 Tours</span>
+                      </div>
+                      <div className="color-overlay" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
+                  <div className="trend-item1">
+                    <div className="trend-image position-relative rounded">
+                      <img src="/assets/images/hotel3.png" alt="image" height="300px" />
+                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                        <div className="trend-content-title">
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Tokyo</a>
+                          </h5>
+                          <h3 className="mb-0 white">Japan</h3>
+                        </div>
+                        <span className="white bg-theme p-1 px-2 rounded">21 Tours</span>
+                      </div>
+                      <div className="color-overlay" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
+                  <div className="trend-item1">
+                    <div className="trend-image position-relative rounded">
+                      <img src="/assets/images/hotel3.png" alt="image" height="300px" />
+                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100">
+                        <div className="trend-content-title">
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Moscow</a>
+                          </h5>
+                          <h3 className="mb-0 white">Russia</h3>
+                        </div>
+                        <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
+                      </div>
+                      <div className="color-overlay" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-6 mb-4">
+                  <div className="trend-item1">
+                    <div className="trend-image position-relative rounded">
+                      <img src="/assets/images/hotel4.png" alt="image" height="300px" />
+                      <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                        <div className="trend-content-title">
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Florida</a>
+                          </h5>
+                          <h3 className="mb-0 white">America</h3>
+                        </div>
+                        <span className="white bg-theme p-1 px-2 rounded">32 Tours</span>
+                      </div>
+                      <div className="color-overlay" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* best tour Ends */}
       {/* Last Minute Deal Starts */}
       <section className="trending pb-0 pt-6" style={{ backgroundImage: 'url(images/shape2.png)' }}>
@@ -444,7 +539,7 @@ function Home() {
           </div>
         </div>
       </section>
-      
+
       <section className="testimonial pt-9" style={{ backgroundImage: 'url(images/testimonial.png)' }}>
         <div className="container">
           <div className="section-title mb-6 text-center w-75 mx-auto">
@@ -501,8 +596,8 @@ function Home() {
         </div>
       </section>
 
-      <Footer/>
-    
+      <Footer />
+
       {/* footer ends */}
       {/* Back to top start */}
       <div id="back-to-top">

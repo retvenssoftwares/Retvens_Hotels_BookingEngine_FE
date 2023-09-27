@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import { BookingContext } from "../context/bookingContext";
 
-const RoomSearch = ({ setHotelData, hotel_id }) => {
+function Search(){
   const [checkin, setCheckin] = useState(
     new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   );
@@ -8,67 +9,51 @@ const RoomSearch = ({ setHotelData, hotel_id }) => {
     new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Replace 'apiEndpoint' with your actual API endpoint
-        const response = await fetch(
-          `http://localhost:8000/api/get/hotelById/${hotel_id}/${checkin}/${checkout}`
-        );
+  const {updateCheckInValue,updateCheckOutValue}  = useContext(BookingContext)
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
 
-        const data = await response.json();
-        console.log(data)
-        setHotelData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [checkin, checkout, hotel_id, setHotelData]);
-
-  return (
-    <div className="row d-flex align-items-center justify-content-between">
-      <div className="col-lg-2 mb-2" style={{ marginLeft: "400px" }}>
-        <div className="form-group">
-          <label className="checkIn-text">Check-in</label>
-          <div className="input-box">
-            <input
-              type="date"
-              name="date"
-              value={checkin}
-              onChange={(e) => setCheckin(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-2 mb-2">
-        <div className="form-group">
-          <label className="checkIn-text">Check-out</label>
-          <div className="input-box">
-            <input
-              type="date"
-              name="date"
-              value={checkout}
-              onChange={(e) => setCheckout(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="col-lg-2" style={{ marginTop: "20px", marginRight: "370px" }}>
-        <div className="form-group mb-0 text-center">
-          <a href="#" className="nir-btn w-100">
-            <i className="fa fa-search "></i> Search Now
-          </a>
-        </div>
-      </div>
+  const handleCheckIn = (e) => {
+    setCheckin(e.target.value)
+    updateCheckInValue(e.target.value)
+  }
+  const handleCheckOut = (e) => {
+    setCheckout(e.target.value)
+    updateCheckOutValue(e.target.value)
+  }
+  return(
+    <>
+    <div class="row d-flex align-items-center justify-content-between">
+<div class="col-lg-2 mb-2" style={{ marginLeft: "400px" }}>
+  <div class="form-group">
+    <label class="checkIn-text">Check-in</label>
+    <div class="input-box">
+      <input type="date" name="date" value={checkin}
+        onChange={handleCheckIn}
+      />
     </div>
-  );
-};
+  </div>
+</div>
+<div class="col-lg-2 mb-2">
+  <div class="form-group">
+    <label class="checkIn-text">Check-out</label>
+    <div class="input-box">
+      <input type="date" name="date" value={checkout}
+        onChange={handleCheckOut}
 
-export default RoomSearch;
+      />
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-2" style={{ marginTop: "20px", marginRight: "370px" }}>
+  <div class="form-group mb-0 text-center">
+    <a href="#" class="nir-btn w-100">
+      <i class="fa fa-search "></i> Search Now
+    </a>
+  </div>
+</div>
+</div>
+    </>
+  )
+}
+export default Search

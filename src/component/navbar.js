@@ -5,14 +5,6 @@ function Navbar() {
     const currentYear = currentDate.getFullYear();
     return (
         <>
-            {/* <link rel='stylesheet' href='/assets/css/style.css'></link>
-        <link rel='stylesheet' href='/assets/css/style.css.map'></link>
-        <link rel='stylesheet' href='/assets/css/plugin.css'></link>
-        <link rel='stylesheet' href='/assets/css/bootstrap.min.css'></link> */}
-            {/* <div id="preloader">
-                <div id="status"></div>
-            </div> */}
-
            
             <header className="main_header_area">
                 <div className="header-content py-1 bg-theme">
@@ -21,7 +13,7 @@ function Navbar() {
                             <ul>
                                 <li><a href="#" className="white"><i className="icon-calendar white"></i> {currentDate.toDateString()}</a>
                                 </li>
-                                <li><a href="#" className="white"><i className="icon-location-pin white"></i> Hollywood, America</a>
+                                <li><a href="#" className="white"><i className="icon-location-pin white"></i> Indore, MP</a>
                                 </li>
 
                             </ul>
@@ -55,55 +47,11 @@ function Navbar() {
 
                                         <li className="submenu dropdown" >
                                             <a href="/hotel-list" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="text-decoration-none">Hotels</a>
-                                            {/* <ul className="dropdown-menu">
-                                                <li><a href="/hotel-list">Destination List</a></li>
-                                                <li><a href="/hotel-detail">Destination Detail</a></li>
-                                            </ul> */}
+                                            
                                         </li>
-
-                                        {/* <li className="submenu dropdown">
-                                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <i className="icon-arrow-down" aria-hidden="true"></i></a>
-                                            <ul className="dropdown-menu">
-                                                <li><a href="team.html">Our Guide</a></li>
-                                                <li><a href="/booking">Booking</a></li>
-                                                <li><a href="confirmation.html">confirmation</a></li>
-                                                <li className="submenu dropdown">
-                                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<i className="fa fa-angle-right" aria-hidden="true"></i></a>
-                                                    <ul className="dropdown-menu">
-                                                        <li><a href="services.html">Services Lists</a></li>
-                                                        <li><a href="services-detail.html">Service Detail</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li className="submenu dropdown">
-                                                    <a href="gallery.html" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery<i className="fa fa-angle-right" aria-hidden="true"></i></a>
-                                                    <ul className="dropdown-menu">
-                                                        <li><a href="gallery.html">Gallery</a></li>
-                                                        <li><a href="gallery1.html">Gallery Masonry</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li className="submenu dropdown">
-                                                    <a href="404.html" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Error<i className="fa fa-angle-right" aria-hidden="true"></i></a>
-                                                    <ul className="dropdown-menu">
-                                                        <li><a href="404.html">Error Page 1</a></li>
-                                                        <li><a href="404-1.html">Error Page 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="login.html">Login|Register</a></li>
-                                                <li><a href="comingsoon.html">Coming Soon</a></li>
-                                                <li><a href="testimonials.html">Testimonials</a></li>
-                                                <li><a href="faq.html">Faq</a></li>
-                                                <li><a href="contact.html">Contact Us</a></li>
-                                                <li><a href="dashboard/dashboard.html">Dashboard</a></li>
-                                            </ul>
-                                        </li> */}
-
-
                                     </ul>
                                 </div>
                                 <div className="register-login d-flex align-items-center">
-                                    {/* <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" className="me-3" class="text-decoration-none">
-                                        <i className="icon-user"></i> Login/Register
-                                    </a> */}
                                     <a href="#" className="nir-btn white">Book Now</a>
                                 </div>
 
