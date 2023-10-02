@@ -16,6 +16,7 @@ import { BookingProvider } from './context/bookingContext';
 
 function App() {
   return (
+    
     <BookingProvider>
       <BookingRoutes />
     </BookingProvider>

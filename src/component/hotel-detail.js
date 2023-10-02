@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { TextField } from "@mui/material";
-import { Select, MenuItem } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Modal from "@mui/material/Modal"; // Import Modal component
-import Carousel from "react-material-ui-carousel"; // Import Carousel component
-import { Paper, Button } from "@mui/material";
 import Room2 from "./roomDetails2";
 import Search from "./roomSearch";
 import { BookingContext } from "../context/bookingContext";
@@ -16,6 +9,7 @@ function HotelDetail() {
   const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
   const { adultValue, setAdultValue } = useContext(BookingContext)
   const [hotelData, setHotelData] = useState([]);
+  const [roomData, setRoomData] = useState([]);
   useEffect(() => {
     // Fetch hotel data from the API
     fetch(`http://localhost:9000/getProperty/${propertyId}`)
@@ -30,7 +24,12 @@ function HotelDetail() {
   }, [propertyId]);
 
   // Define your image data here (replace with actual image URLs)
-
+  const rooms = [
+    { roomName: "Deluxe", price: 12000, roomLeft: 10 },
+    { roomName: "Standard", price: 12000, roomLeft: 10 },
+    { roomName: "Sea", price: 12000, roomLeft: 10 },
+    { roomName: "Luxury", price: 12000, roomLeft: 10 }
+  ];
 
   return (
     <div style={{ backgroundColor: "#f0f3f6", minHeight: "100%" }}>
@@ -77,7 +76,7 @@ function HotelDetail() {
                     }}
                   >
                     {hotelData.propertyName ? hotelData.propertyName.propertyName : ''}
-                 
+
                   </h2>
 
                   <div style={{ textAlign: "left" }}>
@@ -177,40 +176,13 @@ function HotelDetail() {
       </section>
 
       <Search />
-      {/* <div class="row d-flex align-items-center justify-content-between">
-        <div class="col-lg-2 mb-2" style={{ marginLeft: "400px" }}>
-          <div class="form-group">
-            <label class="checkIn-text">Check-in</label>
-            <div class="input-box">
-              <input type="date" name="date" value={checkin}
-                onChange={(e) => setCheckin(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 mb-2">
-          <div class="form-group">
-            <label class="checkIn-text">Check-out</label>
-            <div class="input-box">
-              <input type="date" name="date" value={checkout}
-                onChange={(e) => setCheckout(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div class="col-lg-2" style={{ marginTop: "20px", marginRight: "370px" }}>
-          <div class="form-group mb-0 text-center">
-            <a href="#" class="nir-btn w-100">
-              <i class="fa fa-search "></i> Search Now
-            </a>
-          </div>
-        </div>
-      </div> */}
 
-      <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} hotelData={hotelData.room_availability} />
-      {/* <Room2 totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
-      {/* <Room totalAmount={totalAmount} setTotalAmount={setTotalAmount} /> */}
+      {rooms.map((room, index) => (
+        <div key={index}>
+          <Room2 room={room} setTotalAmount={setTotalAmount} setRoomData={setRoomData} />
+        </div>
+      ))}
       <div id="back-to-top">
         <a href="#" />
       </div>

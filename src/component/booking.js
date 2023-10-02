@@ -1,31 +1,80 @@
 import React, { useContext, useState } from "react";
 import Footer from "./footer"
 import Navbar from "./navbar"
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 import { Button } from "reactstrap";
 import { BookingContext } from "../context/bookingContext";
 import Details from "./guestDetails";
 
 function Booking() {
 
-  
-  //const {roomSelected, setRoomSelected}  = useContext(BookingContext)
-  // const Item = styled(Paper)(({ theme }) => ({
-  //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  //   ...theme.typography.body2,
-  //   padding: theme.spacing(1),
-  //   textAlign: 'center',
-  //   color: theme.palette.text.secondary,
-  // }));
+  const navigate = useNavigate();
+  const { roomSelected,checkIn,checkOut} = useContext(BookingContext);
+
   const [showForm, setShowForm] = useState(true);
   const handleRemoveClick = () => {
     // Set showForm to false to hide the form
     setShowForm(false);
   };
+
+
+ // Function to handle the API call and navigation to the payment page
+ const handleCheckout = async () => {
+  try {
+    // Prepare the guest details object
+    const guestDetails = roomSelected.map((field) => ({
+      title: field.title,
+      guestFirstName: field.guestFirstName,
+      guestLastName: field.guestLastName,
+      guestEmail: field.guestEmail,
+      guestPhoneNumber: field.guestPhoneNumber,
+      guestAddress1: field.guestAddress1,
+      guestAddress2: field.guestAddress2,
+      specialRequest:field.specialRequest,
+      estimatedArrival:field.estimatedArrival,
+  "roomTypeId":"Kn45LAkp",
+    }));
+
+    // Prepare the request data including guest details, checkIn, and checkOut dates
+    const requestData = {
+      roomDetails: guestDetails,
+      checkInDate: checkIn,
+      checkOutDate: checkOut,
+    
+      // Add any other data you need for the API call
+    };
+    console.log(requestData)
+
+    // Make the API call
+    const response = await fetch('http://localhost:9000/createBooking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    if (response.ok) {
+      // API call was successful, navigate to the payment page
+      navigate("/payment");
+    } else {
+      // Handle the case where the API call was not successful
+      console.error("API call failed");
+    }
+  } catch (error) {
+    // Handle network errors or other exceptions
+    console.error(error);
+  }
+};
+
+
 
   return (
     <div>
@@ -50,10 +99,10 @@ function Booking() {
       </section>
       {/* BreadCrumb Ends */}
       {/* top Destination starts */}
-      <section className="trending pt-6 pb-0 bg-lgrey">
+      <section className="trending pt-4 ml-0 pb-0 bg-lgrey">
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 mb-4 shadow">
+            <div className="col-lg-8 mb-4 shadow">
               <div className="payment-book">
                 <div className="booking-box">
                   <div className="customer-information mb-4">
@@ -68,19 +117,48 @@ function Booking() {
                   </div>
 
                   <div className="customer-information card-information">
-                    {/* <h3 className="border-b pb-2 mb-2">How do you want to pay?</h3> */}
                     <div className="trending-topic-main">
-
-
                     </div>
-
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 mb-4 ps-ld-4">
+            <div className="col-lg-4 mb-4 ps-ld-4">
               <div className="sidebar-sticky shadow">
-                <div className="sidebar-item bg-white rounded box-shadow overflow-hidden p-3 mb-4">
+                {/* <div className="sidebar-item bg-white rounded box-shadow overflow-hidden p-3 mb-4">
+                  <h4>Special request</h4>
+                  <TextField
+                    id="specialRequest"
+                    label="Your Special Request"
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </div> */}
+
+                {/* <div className="sidebar-item bg-white rounded box-shadow overflow-hidden p-3 mb-4">
+                  <h4>Your arrival time</h4>
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel htmlFor="specialRequest">Select Special Request</InputLabel>
+                    <Select
+                      native
+                      label="Select Special Request"
+                      inputProps={{
+                        name: 'specialRequest',
+                        id: 'specialRequest',
+                      }}
+                    >
+                      <option aria-label="None" value="" />
+                      <option value="Option 1">Option 1</option>
+                      <option value="Option 2">Option 2</option>
+                      <option value="Option 3">Option 3</option>
+                    </Select>
+                  </FormControl>
+                </div> */}
+
+                <div className="sidebar-item bg-white rounded box-shadow overflow-hidden p-3 mb-4 shadow"
+                  style={{ float: 'right' }}>
                   <h4>SHAHPURA ABHANERI RESORT</h4>
                   <div className="trend-full border-b pb-2 mb-2">
                     <div className="row">
@@ -106,8 +184,9 @@ function Booking() {
                   </div>
 
 
-                  <button className="payment-button">PROCEED TO CHECKOUT</button>
+                  <button className="payment-button"  onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
                 </div>
+
 
               </div>
 

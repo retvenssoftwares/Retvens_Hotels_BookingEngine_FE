@@ -14,6 +14,8 @@ export function BookingProvider({ children }) {
   const[checkOut,setCheckOut] =useState(new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
   const[rooms,setRooms] = useState([""])
   const [roomSelected, setRoomSelected] = useState([]);
+  const [totalRooms, setTotalRoom] = useState([]);
+  //const [totalAmount, setTotalAmount,] = useState(0);
   const updateValue = (value) => {
     setAdultValue((prev) => value)
     
@@ -26,7 +28,6 @@ export function BookingProvider({ children }) {
     setCheckIn((prev) => value)
     
   }
-  console.log(checkIn)
   const updateCheckOutValue = (value) => {
     setCheckOut((prev) => value)
     
@@ -35,6 +36,7 @@ export function BookingProvider({ children }) {
   const updateRoomValue =(value) =>{
     setRooms((prev)=>value)
   }
+  
   return (
     <BookingContext.Provider value={{
       roomType, setRoomType,
@@ -44,7 +46,9 @@ export function BookingProvider({ children }) {
       checkIn,setCheckIn,updateCheckInValue,
       checkOut,setCheckOut,updateCheckOutValue,
       rooms,setRooms,updateRoomValue,
-      roomSelected, setRoomSelected
+      roomSelected, setRoomSelected,
+      totalRooms,setTotalRoom
+     
 
     }}>
       {children}
