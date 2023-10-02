@@ -177,12 +177,12 @@ function HotelDetail() {
 
       <Search />
 
-
+{/* 
       {rooms.map((room, index) => (
-        <div key={index}>
-          <Room2 room={room} setTotalAmount={setTotalAmount} setRoomData={setRoomData} />
-        </div>
-      ))}
+        <div key={index}> */}
+          <Room2  setTotalAmount={setTotalAmount} setRoomData={setRoomData} />
+        {/* </div>
+      ))} */}
       <div id="back-to-top">
         <a href="#" />
       </div>

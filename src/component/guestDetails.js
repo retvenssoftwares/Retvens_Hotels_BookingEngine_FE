@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Booking from "./booking";
-function Details({totalRooms}) {
+function Details() {
   const initialField = {
     title: "",
     guestFirstName: "",
@@ -24,13 +24,13 @@ function Details({totalRooms}) {
   };
 
   const { adultValue, setAdultValue, childValue, setChildValue, checkIn, checkOut } = useContext(BookingContext);
-  const { totalAmount, setTotalAmount, setRoomSelected } = useContext(BookingContext);
+  const { totalAmount,totalRooms,roomSelected ,setTotalAmount, setRoomSelected } = useContext(BookingContext);
 
   const [fields, setFields] = useState([initialField]);
-
+console.log(totalRooms)
  
   const handleFieldChange = (index, name, value) => {
-    const updatedFields = [...totalRooms];
+    const updatedFields = [...roomSelected];
     updatedFields[index][name] = value;
     setFields(updatedFields);
   };
@@ -48,7 +48,7 @@ function Details({totalRooms}) {
   }, [navigate]);
 
   const handleRemoveField = (index) => {
-    const updatedFields = [...totalRooms];
+    const updatedFields = [...roomSelected];
     updatedFields.splice(index, 1);
     setRoomSelected(updatedFields);
 
@@ -63,16 +63,18 @@ function Details({totalRooms}) {
       window.localStorage.setItem("counterValue", updatedFields.length);
     }
   };
-
+  if (!totalRooms || !Array.isArray(totalRooms)) {
+    return null; // or return an appropriate component or message
+  }
  
-  // console.log(totalRooms)
+  //  console.log(totalRooms)
 
   return (
     <>
       <h4 className="booking-hotel-name margin-left-text">SHAHPURA ABHANERI RESORT</h4>
       <h5 className="guest-details margin-left-text">Guest Details</h5>
      
-      {totalRooms.map((field, index) => (
+      {roomSelected.map((field, index) => (
         <div key={index} className="row">
           <div className="row">
             <div className="trend-check border-b pb-2">

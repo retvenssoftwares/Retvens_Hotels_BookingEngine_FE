@@ -36,6 +36,10 @@ export function BookingProvider({ children }) {
   const updateRoomValue =(value) =>{
     setRooms((prev)=>value)
   }
+
+  const updateTotalRooms =(value) =>{
+    setTotalRoom((prev)=>value)
+  }
   
   return (
     <BookingContext.Provider value={{
@@ -47,7 +51,7 @@ export function BookingProvider({ children }) {
       checkOut,setCheckOut,updateCheckOutValue,
       rooms,setRooms,updateRoomValue,
       roomSelected, setRoomSelected,
-      totalRooms,setTotalRoom
+     totalRooms,setTotalRoom,updateTotalRooms
      
 
     }}>
