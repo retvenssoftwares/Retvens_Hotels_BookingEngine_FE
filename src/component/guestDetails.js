@@ -1,14 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { BookingContext } from "../context/bookingContext";
-import { Link, useNavigate } from 'react-router-dom';
-import rooms from './roomDetails2';
-import TextField from '@mui/material/TextField'; // Import the TextField component
-import MenuItem from '@mui/material/MenuItem'; // Import MenuItem from @mui/material/Menu package
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
+import { Link, useNavigate,useParams } from "react-router-dom";
+import rooms from "./roomDetails2";
+import TextField from "@mui/material/TextField"; // Import the TextField component
+import MenuItem from "@mui/material/MenuItem"; // Import MenuItem from @mui/material/Menu package
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 import Booking from "./booking";
 function Details() {
+  const {propertyId} = useParams()
   const initialField = {
     title: "",
     guestFirstName: "",
@@ -18,17 +19,36 @@ function Details() {
     guestAddress1: "",
     guestAddress2: "",
     specialRequest: "",
-    estimatedArrival:"",
+    estimatedArrival: "",
     checkInDate: "",
     checkInDate: "",
   };
 
-  const { adultValue, setAdultValue, childValue, setChildValue, checkIn, checkOut } = useContext(BookingContext);
-  const { totalAmount,totalRooms,roomSelected ,setTotalAmount, setRoomSelected } = useContext(BookingContext);
+  const {
+    adultValue,
+    setAdultValue,
+    childValue,
+    setChildValue,
+    checkIn,
+    checkOut,
+  } = useContext(BookingContext);
+  const {
+    totalAmount,
+    totalRooms,
+    roomSelected,
+    setTotalAmount,
+    setRoomSelected,
+  } = useContext(BookingContext);
 
   const [fields, setFields] = useState([initialField]);
-console.log(totalRooms)
- 
+  // console.log(roomSelected)
+  const totalRoom = roomSelected.length;
+
+  //  console.log(totalRoom)
+  //  console.log(totalAmount)
+  const amount = totalAmount / totalRoom;
+  console.log(amount);
+
   const handleFieldChange = (index, name, value) => {
     const updatedFields = [...roomSelected];
     updatedFields[index][name] = value;
@@ -39,8 +59,8 @@ console.log(totalRooms)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const refreshParam = urlParams.get('refresh');
-    if (refreshParam === 'true') {
+    const refreshParam = urlParams.get("refresh");
+    if (refreshParam === "true") {
       // Refresh the page and remove the refresh query parameter
       window.location.reload(rooms);
       navigate(window.location.pathname);
@@ -57,7 +77,7 @@ console.log(totalRooms)
       // Navigate to the hotel-detail page and refresh
       // navigate("/hotel-detail/:hotel_id");
       window.localStorage.setItem("counterValue", 0);
-      window.location.pathname = "/hotel-detail/:propertyId";
+ navigate(`/hotel-detail/${propertyId}`)
     } else {
       // Set counterValue to the updated number of records
       window.localStorage.setItem("counterValue", updatedFields.length);
@@ -66,14 +86,16 @@ console.log(totalRooms)
   if (!totalRooms || !Array.isArray(totalRooms)) {
     return null; // or return an appropriate component or message
   }
- 
-  //  console.log(totalRooms)
+
+  //7 console.log(totalRooms)
 
   return (
     <>
-      <h4 className="booking-hotel-name margin-left-text">SHAHPURA ABHANERI RESORT</h4>
+      <h4 className="booking-hotel-name margin-left-text">
+        SHAHPURA ABHANERI RESORT
+      </h4>
       <h5 className="guest-details margin-left-text">Guest Details</h5>
-     
+
       {roomSelected.map((field, index) => (
         <div key={index} className="row">
           <div className="row">
@@ -94,16 +116,27 @@ console.log(totalRooms)
                 <div className="col-lg-3">
                   <div>
                     <p className="mb-0">ROOM INFORMATION</p>
-                    <p className="mb-0">Deluxe Cottages - Deluxe Cottages CP</p>
-                    <p className="mb-0">{adultValue} Adult</p>
-                    <p className="mb-0">{childValue} Child</p>
-                    <div style={{ padding: "20px", gap: "20px", display: 'flex' }}>
-                      <Link to="/hotel-detail/:propertyId"><button className="edit-form">EDIT</button></Link>
-                      <div className="col-md-8 mb-4 ml-0" >
+                    <p className="mb-0">{field.roomType}</p>
+                    <p className="mb-0">{field.adult} Adult</p>
+                    <p className="mb-0">{field.child} Child</p>
+                    <div
+                      style={{ padding: "20px", gap: "20px", display: "flex" }}
+                    >
+                      <div className="col-md-4 mb-4 ml-0">
+                      <button
+                        className="edit-form"
+                        style={{ marginLeft: "-40px" }}
+                        onClick={() => navigate(`/hotel-detail/${propertyId}`)}
+                      >
+                        EDIT
+                      </button>
+                      </div>
+                   
+                      <div className="col-md-4 mb-4 ml-0" style={{marginLeft:"30px"}}>
                         <button
                           type="button"
                           className="remove-form"
-                          style={{ marginLeft: "20px" }}
+                          style={{ marginLeft: "-20px" }}
                           onClick={() => handleRemoveField(index)}
                         >
                           Remove
@@ -115,7 +148,7 @@ console.log(totalRooms)
                 <div className="col-lg-2">
                   <div>
                     <p className="mb-0">Price</p>
-                    <p className="mb-0">{totalAmount}</p>
+                    <p className="mb-0">{amount}</p>
                   </div>
                 </div>
               </div>
@@ -133,7 +166,6 @@ console.log(totalRooms)
                     handleFieldChange(index, "title", e.target.value)
                   }
                   variant="outlined"
-
                 >
                   <MenuItem value={0}>Select</MenuItem>
                   <MenuItem value="Mr.">Mr.</MenuItem>
@@ -245,7 +277,6 @@ console.log(totalRooms)
                 inputProps={{ style: { height: "30px" } }}
               />
             </div>
-
           </div>
           <div className="col-md-5 margin-left-text">
             <div className="form-group mb-2">
@@ -253,7 +284,6 @@ console.log(totalRooms)
               <TextField
                 id="specialRequest"
                 label="Your Special Request"
-
                 rows={4}
                 className="text-input"
                 variant="outlined"
@@ -265,32 +295,31 @@ console.log(totalRooms)
                 inputProps={{ style: { height: "30px" } }}
               />
             </div>
-
           </div>
           <div className="col-md-5">
             <div className="form-group mb-2">
-          <label>Your arrival time</label>
-                  <FormControl variant="outlined" fullWidth className="text-input"> 
-                    <InputLabel htmlFor="specialRequest">Select Special Request</InputLabel>
-                    <Select
-                      native
-                      label="Select Special Request"
-                      value={field.estimatedArrival}
-                      
-                      inputProps={{
-                        name: 'specialRequest',
-                        id: 'specialRequest',
-                      }}
-                    >
-                      <option aria-label="None" value="" />
-                      <option value="Option 1">10:00</option>
-                      <option value="Option 2">11:00</option>
-                      <option value="Option 3">12:00</option>
-                    </Select>
-                  </FormControl>
+              <label>Your arrival time</label>
+              <FormControl variant="outlined" fullWidth className="text-input">
+                <InputLabel htmlFor="specialRequest">
+                  Select Special Request
+                </InputLabel>
+                <Select
+                  native
+                  label="Select Special Request"
+                  value={field.estimatedArrival}
+                  inputProps={{
+                    name: "specialRequest",
+                    id: "specialRequest",
+                  }}
+                >
+                  <option aria-label="None" value="" />
+                  <option value="Option 1">10:00</option>
+                  <option value="Option 2">11:00</option>
+                  <option value="Option 3">12:00</option>
+                </Select>
+              </FormControl>
+            </div>
           </div>
-          </div>
-
         </div>
       ))}
       {/* <Booking handleSubmit={handleSubmit} /> */}

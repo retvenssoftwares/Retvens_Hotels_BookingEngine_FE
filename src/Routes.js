@@ -22,8 +22,8 @@ function BookingRoutes() {
 
                 <Route exact path="/home" element={<Home />} />
                 <Route exact path="/about" element={<About />} />
-                <Route exact path="/booking" element={<Booking />} />
-                <Route exact path="/payment" element={<Payment />} />
+                <Route exact path="/booking/:propertyId" element={<Booking />} />
+                <Route exact path="/payment/:bookingId" element={<Payment />} />
                 <Route exact path="/hotel-list" element={<HotelList />} />
                 <Route exact path="/hotel-detail/:propertyId" element={<HotelDetail />} />
                 {/* <Route exact path="/hotel-detail1/:hotel_id" element={<HotelDetail1 />} /> */}

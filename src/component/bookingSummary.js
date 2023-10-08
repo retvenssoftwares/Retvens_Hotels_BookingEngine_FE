@@ -8,7 +8,7 @@
 // function RoomSummary({ roomSelected, room }) {
 //   const navigate = useNavigate();
 //   const {
-   
+
 //     totalAmount,
 //     setTotalAmount,
 //     adultValue,
@@ -40,7 +40,6 @@
 //     textAlign: "center",
 //     color: theme.palette.text.secondary,
 //   }));
-
 
 //   // Calculate the total price
 //   const totalPrice = room.price * roomSelected.length;
@@ -76,13 +75,12 @@
 //           <div style={{ textAlign: "right", alignItems: "center" }}>
 //             <h5>Rs {totalPrice}</h5>
 //             <p>{totalRooms} Rooms</p>
-           
-            
+
 //           </div>
 //           <hr className="solid" />
 //         </div>
 //       </Item>
-      
+
 //       <div onClick={() => navigate("/booking")} className="text-decoration-none">
 //         <div
 //           style={{
@@ -105,17 +103,12 @@
 //           <p style={{ color: "white" }}>Rs {totalPrice}</p>
 //         </div>
 //       </div>
-    
+
 //     </>
 //   );
 // }
 
 // export default RoomSummary;
-
-
-
-
-
 
 import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
@@ -123,9 +116,17 @@ import { Paper } from "@mui/material";
 import { BookingContext } from "../context/bookingContext";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Summary({ roomType, roomSelected }) {
-  const { totalAmount, adultValue, childValue } = useContext(BookingContext);
-
+function Summary({
+  roomType,
+  roomSelected,
+  adultValue,
+  childValue,
+  totalAmount,
+  roomsData,
+  propertyId,
+}) {
+  //const { totalAmount } = useContext(BookingContext);
+  console.log(totalAmount);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -164,21 +165,20 @@ function Summary({ roomType, roomSelected }) {
           </p>
         </div>
         <div style={{ textAlign: "right", alignItems: "center" }}>
-          <h5>
-            Rs {totalAmount !== undefined ? totalAmount.toFixed(2) : 0.00}
-          </h5>
+          <h5>Rs {totalAmount !== undefined ? totalAmount.toFixed(2) : 0.0}</h5>
           <p>{roomSelected.length} Rooms</p>
         </div>
+
         <hr className="solid" />
       </div>
     </Item>
   );
 }
 
-export default function SummaryContainer() {
+export default function SummaryContainer({ propertyId }) {
   const navigate = useNavigate();
-  const { roomSelected ,totalAmount} = useContext(BookingContext);
-
+  const { roomSelected, totalAmount } = useContext(BookingContext);
+  console.log(propertyId)
   // Separate roomSelected by roomType
   const roomTypes = Array.from(
     new Set(roomSelected.map((room) => room.roomType))
@@ -186,15 +186,37 @@ export default function SummaryContainer() {
 
   return (
     <>
-      {roomTypes.map((roomType) => (
-        <Summary
-          key={roomType}
-          roomType={roomType}
-          roomSelected={roomSelected.filter(
-            (room) => room.roomType === roomType
-          )}
-        />
-      ))}
+      {roomTypes.map((roomType) => {
+        // Filter roomSelected for the specific room type
+        const selectedRoomsOfType = roomSelected.filter(
+          (room) => room.roomType === roomType
+        );
+
+        // Calculate adult and child values for this room type
+        const adultValue = selectedRoomsOfType.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.adult,
+          0
+        );
+        const childValue = selectedRoomsOfType.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.child,
+          0
+        );
+        // Calculate totalAmount for this room type
+        const totalAmount = selectedRoomsOfType.length * 10000; // Assuming a fixed rate of 10000 per room
+
+        return (
+          <Summary
+            propertyId={propertyId}
+            key={roomType}
+            roomType={roomType}
+            roomSelected={selectedRoomsOfType}
+            adultValue={adultValue}
+            childValue={childValue}
+            totalAmount={totalAmount}
+          />
+        );
+      })}
+
       <div
         style={{
           display: "flex",
@@ -206,9 +228,9 @@ export default function SummaryContainer() {
           position: "relative",
           bottom: "0",
           width: "100%",
-          marginLeft:"8px"
+          marginLeft: "8px",
         }}
-        onClick={() => navigate("/booking")}
+        onClick={() => navigate(`/booking/${propertyId}`)}
         className="text-decoration-none"
       >
         <p
@@ -216,13 +238,13 @@ export default function SummaryContainer() {
             color: "white",
             fontSize: "20px",
             marginTop: "5px",
-            marginLeft:"5px"
+            marginLeft: "5px",
           }}
         >
           Pay
         </p>
         <p style={{ color: "white" }}>
-          Rs {totalAmount !== undefined ? totalAmount.toFixed(2) : 0.00}
+          Rs {totalAmount !== undefined ? totalAmount.toFixed(2) : 0.0}
         </p>
       </div>
     </>

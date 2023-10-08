@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
@@ -8,13 +8,76 @@ import { Paper, Button } from "@mui/material";
 import { BookingContext } from "../context/bookingContext";
 import Summary from "./bookingSummary";
 
-function Room2() {
+function Room2({propertyId, roomsData}) {
+  
+console.log(roomsData)
+  // Function to save roomSelected and roomCounts to local storage
+  const saveDataToLocalStorage = () => {
+    window.localStorage.setItem("roomSelected", JSON.stringify(roomSelected));
+    window.localStorage.setItem("roomCounts", JSON.stringify(roomCounts));
+    window.localStorage.setItem(
+      "roomsLeft",
+      JSON.stringify(roomData.map((room) => room.roomsLeft))
+    );
+  };
+
+  // Function to load roomSelected and roomCounts from local storage
+  const loadDataFromLocalStorage = () => {
+    const storedRoomSelected = JSON.parse(
+      window.localStorage.getItem("roomSelected")
+    );
+    const storedRoomCounts = JSON.parse(
+      window.localStorage.getItem("roomCounts")
+    );
+    const storedRoomsLeft = JSON.parse(
+      window.localStorage.getItem("roomsLeft")
+    );
+    if (storedRoomSelected) {
+      setRoomSelected(storedRoomSelected);
+    }
+    if (storedRoomCounts) {
+      setRoomCounts(storedRoomCounts);
+    }
+    if (storedRoomsLeft) {
+      const updatedRoomData = roomData.map((room, index) => ({
+        ...room,
+        roomsLeft: storedRoomsLeft[index],
+      }));
+      setRoomData(updatedRoomData);
+    }
+  };
+
+  useEffect(() => {
+    loadDataFromLocalStorage();
+    // Add an event listener for beforeunload to clear data on page refresh
+    window.addEventListener("beforeunload", clearLocalStorage);
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener("beforeunload", clearLocalStorage);
+    };
+  }, []);
+  const clearLocalStorage = () => {
+    // Clear the relevant data from local storage
+    window.localStorage.removeItem("containerVisible");
+    window.localStorage.removeItem("counterValue");
+    window.localStorage.removeItem("roomSelected");
+    window.localStorage.removeItem("roomCounts");
+    window.localStorage.removeItem("roomBookVisible");
+    window.localStorage.removeItem("totalAmount");
+    window.localStorage.removeItem("roomsLeft");
+  };
+
+  useEffect(() => {
+    setRoomBookVisible(true);
+  }, []);
+
   const [containerVisible, setContainerVisible] = useState(
     window.localStorage.getItem("containerVisible") === "true"
   );
-   // Retrieve the counterValue from local storage or set it to 0
-   const initialCounterValue = parseInt(window.localStorage.getItem("counterValue")) || 0;
-   const [counterValue, setCounterValue] = useState(initialCounterValue);
+  // Retrieve the counterValue from local storage or set it to 0
+  const initialCounterValue =
+    parseInt(window.localStorage.getItem("counterValue")) || 0;
+  const [counterValue, setCounterValue] = useState(initialCounterValue);
   // const [counterValue, setCounterValue] = useState(
   //   parseInt(window.localStorage.getItem("counterValue")) || 0
   // );
@@ -24,60 +87,51 @@ function Room2() {
     window.localStorage.getItem("roomBookVisible") === "true"
   );
   const navigate = useNavigate();
-  const { totalAmount, setTotalAmount, roomSelected, setRoomSelected, updateValue, updateChildValue , adultValue, childValue} = useContext(
-    BookingContext
-  );
+  const {
+    totalAmount,
+    setTotalAmount,
+    roomSelected,
+    setRoomSelected,
+    updateValue,
+    updateChildValue,
+    adultValue,
+    childValue,
+  } = useContext(BookingContext);
   const [selectedRoomType, setSelectedRoomType] = useState(null);
 
   // Track room counts for each room type
   const [roomCounts, setRoomCounts] = useState({});
-  
-  const roomData = [
-    {
-      id: 1,
-      type: "Deluxe",
-      rate: 10000,
-      maxGuests: 5,
-      roomsLeft: 10,
-      roomType: "Deluxe",
-    },
-    {
-      id: 2,
-      type: "Standard",
-      rate: 8000,
-      maxGuests: 4,
-      roomsLeft: 5,
-      roomType: "Standard",
-    },
-    {
-      id: 3,
-      type: "luxury",
-      rate: 8000,
-      maxGuests: 4,
-      roomsLeft: 5,
-      roomType: "luxury",
-    },
-  ];
+
+  const [roomData, setRoomData] = useState(roomsData);
 
   const toggleButton = (roomType) => {
     setSelectedRoomType(roomType);
     const newContainerVisible = !containerVisible;
     setContainerVisible(newContainerVisible);
-    window.localStorage.setItem("containerVisible", newContainerVisible.toString());
+    window.localStorage.setItem(
+      "containerVisible",
+      newContainerVisible.toString()
+    );
   };
 
   const toggleRoomBook = () => {
     const newRoomBookVisible = !roomBookVisible;
     setRoomBookVisible(newRoomBookVisible);
 
-    window.localStorage.setItem("roomBookVisible", newRoomBookVisible.toString());
+    window.localStorage.setItem(
+      "roomBookVisible",
+      newRoomBookVisible.toString()
+    );
   };
 
   useEffect(() => {
-    const calculatedTotalAmount = roomSelected.length * 10000;
+    const calculatedTotalAmount = roomSelected.length * roomData.rate;
     setTotalAmount(calculatedTotalAmount);
 
-    window.localStorage.setItem("totalAmount", calculatedTotalAmount.toString());
+    window.localStorage.setItem(
+      "totalAmount",
+      calculatedTotalAmount.toString()
+    );
   }, [roomSelected]);
 
   const openModal = (index) => {
@@ -89,36 +143,77 @@ function Room2() {
     setModalOpen(false);
   };
 
-
   const getSelectedRoomsOfType = (roomType) => {
-    return roomSelected.filter((room) => room.roomType === roomType);
+    return roomSelected.filter((room) => room?.roomType === roomType);
   };
+
+ 
 
   const incrementRoomCount = (roomType) => {
     const updatedCounts = { ...roomCounts };
-    updatedCounts[roomType] = (updatedCounts[roomType] || 0) + 1;
-    setRoomCounts(updatedCounts);
+    if (roomsData.find((room) => room.type === roomType)?.room.roomsLeft > 0) {
+      updatedCounts[roomType] = (updatedCounts[roomType] || 0) + 1;
 
-    const newRoom = {
-      name: `${roomType} ${updatedCounts[roomType]}`,
-      adult: 1,
-      child: 0,
-      roomType: roomType,
-    };
+      // Update the roomsLeft for the specific room type
+      const updatedRoomData = roomsData.map((room) => {
+        if (room.type === roomType) {
+          return {
+            ...room,
+            roomsLeft: Math.max(0, room.roomsLeft - 1), // Ensure roomsLeft is not negative
+          };
+        }
+        return room;
+      });
 
-    setRoomSelected((prev) => [...prev, newRoom]);
+      setRoomCounts(updatedCounts);
+      setRoomData(updatedRoomData);
+
+      const newRoom = {
+        name: `${roomType} ${updatedCounts[roomType]}`,
+        adult: 1,
+        child: 0,
+        roomType: roomType,
+      };
+
+      setRoomSelected((prev) => [...prev, newRoom]);
+
+      // Save data to local storage
+      saveDataToLocalStorage();
+    }
   };
+
 
   const decrementRoomCount = (roomType) => {
     if (roomCounts[roomType] > 0) {
-      const lastAddedRoom = roomSelected.find((room) => room.roomType === roomType);
+      const lastAddedRoom = roomSelected.find(
+        (room) => room?.roomType === roomType
+      );
 
       if (lastAddedRoom) {
         const updatedCounts = { ...roomCounts };
         updatedCounts[roomType] = (updatedCounts[roomType] || 0) - 1;
-        setRoomCounts(updatedCounts);
 
-        setRoomSelected((prevRooms) => prevRooms.filter((room) => room.roomType !== roomType || room !== lastAddedRoom));
+        // Increase the roomsLeft for the specific room type
+        const updatedRoomData = roomsData.map((room) => {
+          if (room.roomType === roomType) {
+            return {
+              ...room,
+              roomsLeft: room.roomsLeft + 1,
+            };
+          }
+          return room;
+        });
+
+        setRoomCounts(updatedCounts);
+        setRoomData(updatedRoomData);
+
+        setRoomSelected((prevRooms) =>
+          prevRooms.filter(
+            (room) => room?.roomType !== roomType || room !== lastAddedRoom
+          )
+        );
+        // Save data to local storage
+        saveDataToLocalStorage();
       }
     }
   };
@@ -126,9 +221,11 @@ function Room2() {
   useEffect(() => {
     const calculatedTotalAmount = roomSelected.length * 10000;
     setTotalAmount(calculatedTotalAmount);
-    window.localStorage.setItem("totalAmount", calculatedTotalAmount.toString());
+    window.localStorage.setItem(
+      "totalAmount",
+      calculatedTotalAmount.toString()
+    );
   }, [roomSelected, adultValue, childValue]);
-
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -139,12 +236,12 @@ function Room2() {
   }));
 
   const buttonStyle = {
-    width: "50px",
+    width: "60px",
     height: "30px",
   };
 
   const roomImages = [
-    "/assets/images/hotelRoom.png",
+    "/assets/images/hotelroom1.png",
     "/assets/images/hotelRoom1.png",
     "/assets/images/hotelRooms2.png",
     "/assets/images/hotelRoom4.png",
@@ -193,10 +290,25 @@ function Room2() {
     updateChildValue(ch);
   }, [roomSelected]);
 
+  const handleRoomChange = (event, index, roomName) => {
+    const { name, value } = event.target;
+    setRoomSelected((prevRooms) => {
+      const newArr = prevRooms.map((prevRoom, prevIndex) =>
+        prevRoom.name.includes(roomName)
+          ? { ...prevRoom, [name]: parseInt(value) }
+          : prevRoom
+      );
+
+      const a = [...prevRooms];
+      return newArr;
+    });
+  };
+
   useEffect(() => {
     window.onbeforeunload = () => {
       window.localStorage.removeItem("containerVisible");
       window.localStorage.removeItem("counterValue");
+      window.localStorage.removeItem("roomsLeft");
     };
 
     return () => {
@@ -207,10 +319,6 @@ function Room2() {
   useEffect(() => {
     setRoomBookVisible(true);
   }, []);
-
-  // const getSelectedRoomsOfType = (roomType) => {
-  //   return roomSelected.filter((room) => room.roomType === roomType);
-  // };
 
   useEffect(() => {
     window.onbeforeunload = () => {
@@ -231,24 +339,51 @@ function Room2() {
     // Store the current counterValue in local storage
     window.localStorage.setItem("counterValue", counterValue.toString());
   }, [counterValue]);
-
+  console.log(roomData)
   return (
     <>
-      <Grid container spacing={2} className="main-box" style={{ marginLeft: "2px" }}>
+      <Grid
+        container
+        spacing={2}
+        className="main-box"
+        style={{ marginLeft: "2px" }}
+      >
         <Grid item xs={7}>
           <Item>
-            {roomData.map((room, index) => (
-              <div key={room.id}>
+            {roomsData && roomsData.map((room, index) => {
+             
+              return(
+              <div key={index}>
                 <div className="room-box">
-                  <div className="col-lg-6" onClick={() => openModal(0)} style={{ cursor: "pointer" }}>
-                    <img src="/assets/images/hotel.png" alt="" className="room-image" />
+                  <div
+                    className="col-lg-6"
+                    onClick={() => openModal(0)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <img
+                      src="/assets/images/hotel.png"
+                      alt=""
+                      className="room-image"
+                    />
                   </div>
-                  <Modal open={modalOpen} onClose={closeModal} style={modalStyles}>
+                  <Modal
+                    open={modalOpen}
+                    onClose={closeModal}
+                    style={modalStyles}
+                  >
                     <div className="modal-content">
-                      <Carousel autoPlay={false} animation="fade" index={selectedImageIndex}>
+                      <Carousel
+                        autoPlay={false}
+                        animation="fade"
+                        index={selectedImageIndex}
+                      >
                         {roomImages.map((image, index) => (
                           <Paper key={index} elevation={3}>
-                            <img src={image} alt={`Room ${index + 1}`} style={{ width: "100%" }} />
+                            <img
+                              src={image}
+                              alt={`Room ${index + 1}`}
+                              style={{ width: "100%" }}
+                            />
                           </Paper>
                         ))}
                       </Carousel>
@@ -260,52 +395,63 @@ function Room2() {
                   </Modal>
                   {/* ... (rest of the room details) */}
                   <div className="room-type-info" style={{ textAlign: "left" }}>
-                        <h4 style={{ whiteSpace: "nowrap" }}>{room.type}</h4>
-                        <label>ROOM RATES EXCLUSIVE OF TAX</label>
-                        <br />
-                        <label>MAX {room.maxGuests} Guests</label>
+                    <h4 style={{ whiteSpace: "nowrap" }}>{room?.type}</h4>
+                    <label>ROOM RATES EXCLUSIVE OF TAX</label>
+                    <br />
+                    <label>MAX {room?.maxGuests} Guests</label>
                   </div>
                   <div>
-                    <h5>Rs.{room.rate}.00</h5>
-                    <p style={{ whiteSpace: "nowrap", color: "black" }}>PER NIGHT</p>
-                    <p style={{ whiteSpace: "nowrap", color: "green" }}>{room.roomsLeft} Rooms Left</p>
-                    {selectedRoomType === room.type ? (
-                        <div>
-                          <button onClick={() => decrementRoomCount(room.type)} style={buttonStyle}>-</button>
-                          <input type="text" value={roomCounts[room.type] || 0} readOnly style={buttonStyle} />
-                          <button onClick={() => incrementRoomCount(room.type)} style={buttonStyle}>+</button>
-                        </div>
-                      
-                      ) : (
-                        <button onClick={() => toggleButton(room.type)} className="add-room">
-                          Add Room
+                    <h5>Rs.{room?.rate}.00</h5>
+                    <p style={{ whiteSpace: "nowrap", color: "black" }}>
+                      PER NIGHT
+                    </p>
+                    <p style={{ whiteSpace: "nowrap", color: "green" }}>
+                      {room?.roomsLeft} Rooms Left
+                    </p>
+                    {selectedRoomType === room?.type ? (
+                      <div>
+                        <button
+                          onClick={() => decrementRoomCount(room?.type)}
+                          style={buttonStyle}
+                        >
+                          -
                         </button>
+                        <input
+                          type="text"
+                          value={roomCounts[room?.type] || 0}
+                          readOnly
+                          style={buttonStyle}
+                        />
+                        <button
+                          onClick={() => incrementRoomCount(room?.type, index)}
+                          style={buttonStyle}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => toggleButton(room?.type)}
+                        className="add-room"
+                      >
+                        Add Room
+                      </button>
                     )}
-
                   </div>
                 </div>
                 <div>
-                  {selectedRoomType === room.type && getSelectedRoomsOfType(room.type).map((room, index) => {
-                    const handleChange = (event) => {
-                      const { name, value } = event.target;
-                      setRoomSelected((prevRooms) =>
-                        prevRooms.map((prevRoom, prevIndex) =>
-                          prevIndex === index
-                            ? { ...prevRoom, [name]: parseInt(value) }
-                            : prevRoom
-                        )
-                      );
-                    };
-
-                    return (
+                  {selectedRoomType === room?.type &&
+                    getSelectedRoomsOfType(room?.type).map((room, index) => (
                       <div key={index} className="select-room">
-                        <h5>{room.name} room</h5>
-                        <div className="">
-                          <label htmlFor="adult">Adult</label>
+                        <h5>{room?.name}</h5>
+                        <div>
+                          <label htmlFor={`adult-${index}`}>Adult</label>
                           <select
                             name="adult"
-                            value={room.adult}
-                            onChange={handleChange}
+                            value={room?.adult}
+                            onChange={(event) =>
+                              handleRoomChange(event, index, room?.name)
+                            }
                             id={`adult-${index}`}
                           >
                             {[0, 1, 2].map((value) => (
@@ -316,11 +462,13 @@ function Room2() {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="child">Children</label>
+                          <label htmlFor={`child-${index}`}>Children</label>
                           <select
                             name="child"
-                            value={room.child}
-                            onChange={handleChange}
+                            value={room?.child}
+                            onChange={(event) =>
+                              handleRoomChange(event, index, room?.name)
+                            }
                             id={`child-${index}`}
                           >
                             {[0, 1, 2].map((value) => (
@@ -331,16 +479,15 @@ function Room2() {
                           </select>
                         </div>
                       </div>
-                    );
-                  })}
+                    ))}
                 </div>
               </div>
-            ))}
+            )})}
           </Item>
         </Grid>
         <Grid item xs={4.5}>
           {roomBookVisible && totalAmount > 0 && (
-            <Summary totalAmount={totalAmount} />
+            <Summary propertyId={propertyId} totalAmount={totalAmount} />
           )}
         </Grid>
       </Grid>
@@ -350,13 +497,7 @@ function Room2() {
 
 export default Room2;
 
-
-
-
-
-
 ///////////////////////////////
-
 
 // import React, { useEffect, useState, useContext } from "react";
 // import { useParams } from "react-router-dom";
@@ -370,7 +511,7 @@ export default Room2;
 
 // function RoomDetails({ room, setTotalAmount, setRoomData, totalAmount }) {
 //   const {
- 
+
 //     adultValue,
 //     setAdultValue,
 //     updateValue,
@@ -391,7 +532,6 @@ export default Room2;
 //   );
 //    //const { totalAmount, setTotalAmount, roomSelected, setRoomSelected, adultValue, setAdultValue, updateValue, childValue, setChildValue, updateChildValue, rooms, updateRoomValue } = useContext(BookingContext);
 //   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
- 
 
 //   const decrement = () => {
 //     if (count === 0) {
@@ -421,12 +561,11 @@ export default Room2;
 //       ...prev,
 //       { adult: 0, child: 0 },
 //     ]);
-    
-  
+
 //   // Decrease the roomLeft value by one
 //   setRoomData((prev) => {
 //     return prev.map((item) => {
-//       if (item.roomName === room.roomName) {
+//       if (item.roomName === room?.roomName) {
 //         return {
 //           ...item,
 //           roomLeft: item.roomLeft - 1,
@@ -441,8 +580,7 @@ export default Room2;
 //     true // Show the Summary for the newly added room
 //   ]);
 // };
-// //In this code, we first add the new room to roomSelected and then decrement the roomLeft value for the corresponding room object in roomData. This should ensure that the roomLeft value decreases when you add a room.
-
+// //In this code, we first add the new room to roomSelected and then decrement the roomLeft value for the corresponding room object in roomData. This should ensure that the roomLeft value decreases when you add a room?.
 
 //   const buttonStyle = {
 //     width: "50px",
@@ -476,7 +614,7 @@ export default Room2;
 //       if (count === 0) {
 //         setRoomData((prev) => {
 //           const updated = prev.filter(
-//             (item) => item.roomName !== room.roomName
+//             (item) => item.roomName !== room?.roomName
 //           );
 //           return updated;
 //         });
@@ -484,8 +622,8 @@ export default Room2;
 //       if (count === 1) {
 //         setRoomData((prev) => {
 //           const updated = {
-//             roomName: room.roomName,
-//             price: room.price
+//             roomName: room?.roomName,
+//             price: room?.price
 //           };
 //           return [...prev, updated];
 //         });
@@ -503,7 +641,7 @@ export default Room2;
 //   }));
 
 //   const roomImages = [
-//     "/assets/images/hotelRoom.png",
+//     "/assets/images/hotelroom?.png",
 //     "/assets/images/hotelRoom1.png",
 //     "/assets/images/hotelRooms2.png",
 //     "/assets/images/hotelRoom4.png",
@@ -547,10 +685,10 @@ export default Room2;
 //             return accumulator;
 //           }
 //         }, 0);
-    
+
 //         return totalAdults;
 //       }
-    
+
 //       function calculateTotalChild() {
 //         const totalChildren = roomSelected.reduce((accumulator, currentValue) => {
 //           if (currentValue.child && typeof currentValue.child === "number") {
@@ -559,17 +697,16 @@ export default Room2;
 //             return accumulator;
 //           }
 //         }, 0);
-    
+
 //         return totalChildren;
 //       }
-    
+
 //       useEffect(() => {
 //         const ad = calculateTotalAdults();
 //         const ch = calculateTotalChild();
 //         updateValue(ad);
 //         updateChildValue(ch);
 //       }, [roomSelected, setRoomSelected]);
-  
 
 //   return (
 //     <>
@@ -598,16 +735,16 @@ export default Room2;
 //                 </Modal>
 //                 <div className="room-info">
 //                   <div className="room-type-info" style={{ textAlign: "left" }}>
-//                     <h4 style={{ whiteSpace: "nowrap" }}>{room.roomName}</h4>
+//                     <h4 style={{ whiteSpace: "nowrap" }}>{room?.roomName}</h4>
 //                     <label>ROOM RATES EXCLUSIVE OF TAX</label>
 //                     <br />
-//                     <label>MAX {room.maxGuests} Guests</label>
+//                     <label>MAX {room?.maxGuests} Guests</label>
 //                   </div>
 //                   <div className="flex flex-col justify-between">
 //                     <div>
-//                       <h5>{room.price}</h5>
+//                       <h5>{room?.price}</h5>
 //                       <p style={{ whiteSpace: 'nowrap', color: "black" }}>PER NIGHT</p>
-//                       <p style={{ whiteSpace: 'nowrap', color: "green" }}>{room.roomLeft} room left</p>
+//                       <p style={{ whiteSpace: 'nowrap', color: "green" }}>{room?.roomLeft} room left</p>
 //                     </div>
 //                     <div className="mb-3">
 //                       {!showButton ? (
@@ -637,10 +774,10 @@ export default Room2;
 //                         id=""
 //                         name="adult"
 //                         className="border border-gray-300 text-gray-900 sm:text-sm rounded-md block w-full p-2.5"
-//                         value={room.adult}
+//                         value={room?.adult}
 //                         onChange={(e) => handleChange(e, index)}
 //                       >
-//                         {[1, 2].map((room, index) => (
+//                         {[0,1, 2].map((room, index) => (
 //                           <option
 //                             className="cursor-pointer px-4 py-2 border-b rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 //                             key={index}
@@ -656,7 +793,7 @@ export default Room2;
 //                         id=""
 //                         name="child"
 //                         className="border border-gray-300 text-gray-900 sm:text-sm rounded-md block w-full p-2.5"
-//                         value={room.child}
+//                         value={room?.child}
 //                         onChange={(e) => handleChange(e, index)}
 //                       >
 //                         {[0, 1, 2].map((room, index) => (
@@ -671,13 +808,15 @@ export default Room2;
 //                     </div>
 //                   </div>
 //                 ))}
-                
+
 //               </div>
 //             </div>
 //           </Item>
 //         </Grid>
 //         <Grid item xs={4.5}>
-//           {roomBookVisible[0] && <Summary totalAmount={totalAmount} roomSelected={roomSelected} room={room}/>}
+//         {roomBookVisible  && (
+//              <Summary room={room} totalAmount={totalAmount}   />
+//            )}
 //         </Grid>
 //       </Grid>
 //     </>

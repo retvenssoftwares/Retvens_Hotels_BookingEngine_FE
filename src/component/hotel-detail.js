@@ -31,6 +31,7 @@ function HotelDetail() {
     { roomName: "Luxury", price: 12000, roomLeft: 10 }
   ];
 
+  console.log(roomData)
   return (
     <div style={{ backgroundColor: "#f0f3f6", minHeight: "100%" }}>
       <section
@@ -175,12 +176,16 @@ function HotelDetail() {
         <div className="dot-overlay" />
       </section>
 
-      <Search />
+      <Search setRoomData={setRoomData} propertyID={propertyId} />
 
-{/* 
-      {rooms.map((room, index) => (
+
+      {/* {rooms.map((room, index) => (
         <div key={index}> */}
-          <Room2  setTotalAmount={setTotalAmount} setRoomData={setRoomData} />
+        {
+          roomData && 
+          <Room2 roomsData={roomData} setRoomsData={setRoomData} propertyId={propertyId}  setTotalAmount={setTotalAmount} setRoomData={setRoomData} />
+
+        }
         {/* </div>
       ))} */}
       <div id="back-to-top">
