@@ -8,7 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
-//const {bookingId}= useParams
+
 function PaymentInfo() {
    // console.log(bookingId)
     const [selectedPayment, setSelectedPayment] = useState('Cash On Delivery');
@@ -19,6 +19,7 @@ function PaymentInfo() {
     //pay at hotel
     const [payAtHotel,setPayAtHotel] = useState(null);
 
+const {bookingId}= useParams()
     
     const handlePaymentClick = (paymentType) => {
         setSelectedPayment(paymentType);
@@ -47,7 +48,7 @@ function PaymentInfo() {
 
     const handlePayAtHotelConfirm = () => {
         // Make a PATCH request to the server with the bookingStatus as "confirm"
-        const bookingId = "kxoUQKzC"; // Replace with your actual booking ID
+       // const bookingId = "kxoUQKzC"; // Replace with your actual booking ID
         fetch(`http://localhost:9000/patchBooking/${bookingId}`, {
             method: 'PATCH',
             headers: {

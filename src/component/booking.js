@@ -40,8 +40,8 @@ function Booking() {
         guestAddress2: field.guestAddress2,
         specialRequest: field.specialRequest,
         estimatedArrival: field.estimatedArrival,
-        roomTypeId: "e5TWGi7q",
-        ratePlanId: "O6S8FGQs",
+        //roomTypeId: "e5TWGi7q",
+       // ratePlanId: "O6S8FGQs",
       }));
 
       // Prepare the request data including guest details, checkIn, and checkOut dates

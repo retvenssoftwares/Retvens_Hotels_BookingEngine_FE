@@ -148,12 +148,11 @@ console.log(roomsData)
   };
 
  
-
-  const incrementRoomCount = (roomType) => {
+  const incrementRoomCount = (roomType, index) => {
     const updatedCounts = { ...roomCounts };
-    if (roomsData.find((room) => room.type === roomType)?.room.roomsLeft > 0) {
+    if (roomsData.find((room) => room.type === roomType)?.roomsLeft > 0) {
       updatedCounts[roomType] = (updatedCounts[roomType] || 0) + 1;
-
+  
       // Update the roomsLeft for the specific room type
       const updatedRoomData = roomsData.map((room) => {
         if (room.type === roomType) {
@@ -164,23 +163,25 @@ console.log(roomsData)
         }
         return room;
       });
-
+  
       setRoomCounts(updatedCounts);
       setRoomData(updatedRoomData);
-
+  
       const newRoom = {
         name: `${roomType} ${updatedCounts[roomType]}`,
         adult: 1,
         child: 0,
         roomType: roomType,
       };
-
+  
       setRoomSelected((prev) => [...prev, newRoom]);
-
+  
       // Save data to local storage
       saveDataToLocalStorage();
     }
   };
+  
+
 
 
   const decrementRoomCount = (roomType) => {
