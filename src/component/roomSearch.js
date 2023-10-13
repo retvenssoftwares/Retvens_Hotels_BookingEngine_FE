@@ -114,10 +114,15 @@ function Search({setRoomData}) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
+        
       })
       .then((data) => {
+        
         // Handle the response and filter the data based on your criteria
         const filteredData = data.map((room) => {
+             // Destructure roomTypeId and ratePlanId from room object
+        const { roomTypeId, ratePlanId } = room;
+
           // Add your filtering logic here
           // For example, filter rooms that meet certain conditions
           const newObj = {

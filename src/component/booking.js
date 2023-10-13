@@ -13,9 +13,10 @@ import { Button } from "reactstrap";
 import { BookingContext } from "../context/bookingContext";
 import Details from "./guestDetails";
 import CircularProgress from "@mui/material/CircularProgress"; // Import CircularProgress
-function Booking() {
+function Booking({roomTypeId,ratePlanId}) {
   const navigate = useNavigate();
   const {propertyId} = useParams()
+  console.log(propertyId)
   const { roomSelected, checkIn, checkOut } =
     useContext(BookingContext);
 
@@ -40,8 +41,8 @@ function Booking() {
         guestAddress2: field.guestAddress2,
         specialRequest: field.specialRequest,
         estimatedArrival: field.estimatedArrival,
-        //roomTypeId: "e5TWGi7q",
-       // ratePlanId: "O6S8FGQs",
+        roomTypeId: "k8QP7qeg",
+       ratePlanId: "zfffVj00",
       }));
 
       // Prepare the request data including guest details, checkIn, and checkOut dates

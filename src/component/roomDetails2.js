@@ -237,7 +237,7 @@ console.log(roomsData)
   }));
 
   const buttonStyle = {
-    width: "60px",
+    width: "50px",
     height: "30px",
   };
 
