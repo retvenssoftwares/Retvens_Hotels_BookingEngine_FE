@@ -108,7 +108,7 @@ function Navbar() {
 
                     <li>
                       <Link to="/login" class="text-decoration-none">
-                      <i className="icon-user"/> Login/Register
+                        <i className="icon-user" /> Login/Register
                       </Link>
                     </li>
                   </ul>
