@@ -5,6 +5,7 @@ import Home from './component/home';
 import Navbar from './component/navbar';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import About from './component/about';
+import Auth from './component/login';
 import Booking from './component/booking';
 import HotelList from './component/hotel-list';
 import HotelDetail from './component/hotel-detail';
@@ -22,6 +23,7 @@ function BookingRoutes() {
 
                 <Route exact path="/home" element={<Home />} />
                 <Route exact path="/about" element={<About />} />
+                <Route exact path="/login" element={<Auth/>} />
                 <Route exact path="/booking/:propertyId" element={<Booking />} />
                 <Route exact path="/payment/:bookingId" element={<Payment />} />
                 <Route exact path="/hotel-list" element={<HotelList />} />

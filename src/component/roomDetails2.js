@@ -8,6 +8,7 @@ import { Paper, Button } from "@mui/material";
 import { BookingContext } from "../context/bookingContext";
 import Summary from "./bookingSummary";
 
+
 function Room2({propertyId, roomsData}) {
   
 console.log(roomsData)
@@ -400,6 +401,13 @@ console.log(roomsData)
                     <label>ROOM RATES EXCLUSIVE OF TAX</label>
                     <br />
                     <label>MAX {room?.maxGuests} Guests</label>
+                    <div>
+                      <ul>
+                        <li style={{display:'block'}}><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>EV Charging Station</li>
+                        <li style={{display:'block'}}><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Travel Desk</li>
+                        <li style={{display:'block'}}><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Complimentary Wi-Fi</li>
+                      </ul>
+                    </div>
                   </div>
                   <div>
                     <h5>Rs.{room?.rate}.00</h5>

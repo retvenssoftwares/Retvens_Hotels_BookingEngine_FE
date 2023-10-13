@@ -1,116 +1,184 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import TextField from "@mui/material/TextField";
 
+export default function Auth() {
 
-export function Login(){
-return(
+  const [isLogin, setIsLogin] = useState(true)
+
+  // useEffect(()=>{
+  //     if(isLogin){
+  //         alert("Login")
+  //     }else{
+  //         alert('register')
+  //     }
+  // },[isLogin])
+
+  return (
     <>
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
-      
-          <div className="modal-content-centered">
-            <div className="modal-body">
-              <div className="post-tabs">
-              
-                <ul classsName="nav nav-tabs nav-pills nav-fill" id="postsTab" role="tablist">
-                    <li classsName="nav-item" role="presentation">
-                        <button aria-controls="login" aria-selected="false" classsName="nav-link active" data-bs-target="#login" data-bs-toggle="tab" id="login-tab" role="tab" type="button">Login</button>
-                    </li>
-                    <li classsName="nav-item" role="presentation">
-                        <button aria-controls="register" aria-selected="true" classsName="nav-link" data-bs-target="#register" data-bs-toggle="tab" id="register-tab" role="tab" type="button">Register</button>
-                    </li>
+      <div className="d-flex justify-content-center ">
+        <div role="button" className="border border-secondary rounded p-2" onClick={() => setIsLogin(true)} style={{ marginRight: '10px' }}>
+          <h3>Login</h3>
+        </div>
+        <div role="button" className="border border-secondary rounded p-2" onClick={() => setIsLogin(false)}>
+          <h3>Register</h3>
+        </div>
+      </div>
 
-                </ul>
-                              
-                <div classsName="tab-content blog-full" id="postsTabContent">
-                
-                    <div aria-labelledby="login-tab" classsName="tab-pane fade active show" id="login" role="tabpanel">
-                        <div classsName="row">
-                            <div classsName="col-lg-6">
-                               <div classsName="blog-image rounded">
-                                    <a href="#" style="background-image: url(images/trending/trending5.jpg);"></a>
-                                </div> 
-                            </div>
-                            <div classsName="col-lg-6">
-                                <h4 classsName="text-center border-b pb-2">Login</h4>
-                                <div classsName="log-reg-button d-flex align-items-center justify-content-between">
-                                    <button type="submit" classsName="btn btn-fb">
-                                        <i classsName="fab fa-facebook"></i> Login with Facebook
-                                    </button>
-                                    <button type="submit" classsName="btn btn-google">
-                                        <i classsName="fab fa-google"></i> Login with Google
-                                    </button>
-                                </div>
-                                <hr classsName="log-reg-hr position-relative my-4 overflow-visible"/>
-                                <form method="post" action="#" name="contactform" id="contactform">
-                                    <div classsName="form-group mb-2">
-                                        <input type="text" name="user_name" classsName="form-control" id="fname" placeholder="User Name or Email Address"/>
-                                    </div>
-                                    <div classsName="form-group mb-2">
-                                        <input type="password" name="password_name" classsName="form-control" id="lpass" placeholder="Password"/>
-                                    </div>
-                                    <div classsName="form-group mb-2">
-                                        <input type="checkbox" classsName="custom-control-input" id="exampleCheck1"/>
-                                        <label classsName="custom-control-label mb-0" for="exampleCheck1">Remember me</label>
-                                        <a classsName="float-end" href="#">Lost your password?</a>
-                                    </div>
-                                    <div classsName="comment-btn mb-2 pb-2 text-center border-b">
-                                        <input type="submit" classsName="nir-btn w-100" id="submit" value="Login"/>
-                                    </div>
-                                    <p classsName="text-center">Don't have an account? <a href="#" classsName="theme">Register</a></p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+      {
+        isLogin ? <Login /> : <Register />
+      }
 
-                    <div aria-labelledby="register-tab" classsName="tab-pane fade" id="register" role="tabpanel">
-                        <div classsName="row">
-                            <div classsName="col-lg-6">
-                               <div classsName="blog-image rounded">
-                                    <a href="#" style="background-image: url(images/trending/trending5.jpg);"></a>
-                                </div> 
-                            </div>
-                            <div classsName="col-lg-6">
-                                <h4 classsName="text-center border-b pb-2">Register</h4>
-                                <div classsName="log-reg-button d-flex align-items-center justify-content-between">
-                                    <button type="submit" classsName="btn btn-fb">
-                                        <i classsName="fab fa-facebook"></i> Login with Facebook
-                                    </button>
-                                    <button type="submit" classsName="btn btn-google">
-                                        <i classsName="fab fa-google"></i> Login with Google
-                                    </button>
-                                </div>
-                                <hr classsName="log-reg-hr position-relative my-4 overflow-visible"/>
-                                <form method="post" action="#" name="contactform1" id="contactform1">
-                                    <div classsName="form-group mb-2">
-                                        <input type="text" name="user_name" classsName="form-control" id="fname1" placeholder="User Name"/>
-                                    </div>
-                                    <div classsName="form-group mb-2">
-                                        <input type="text" name="user_name" classsName="form-control" id="femail" placeholder="Email Address"/>
-                                    </div>
-                                    <div classsName="form-group mb-2">
-                                        <input type="password" name="password_name" classsName="form-control" id="lpass1" placeholder="Password"/>
-                                    </div>
-                                    <div classsName="form-group mb-2">
-                                        <input type="password" name="password_name" classsName="form-control" id="lrepass" placeholder="Re-enter Password"/>
-                                    </div>
-                                    <div classsName="form-group mb-2 d-flex">
-                                        <input type="checkbox" classsName="custom-control-input" id="exampleCheck2"/>
-                                        <label classsName="custom-control-label mb-0 ms-1 lh-1" for="exampleCheck2">I have read and accept the Terms and Privacy Policy?</label>
-                                    </div>
-                                    <div classsName="comment-btn mb-2 pb-2 text-center border-b">
-                                        <input type="submit" classsName="nir-btn w-100" id="submit2" value="Register"/>
-                                    </div>
-                                    <p classsName="text-center">Already have an account? <a href="#" classsName="theme">Login</a></p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+    </>
+  )
+}
+
+const Register = () => {
+  return <>
+
+    <div class="container-fluid bg-light p-0">
+      <div class="row g-0">
+        <div class="col-lg-12 py-6 px-5 row justify-content-center">
+          <div className="col-md-6">
+            <h1 class="display-5 mb-4">Register <span class="text-success">Here!!!</span></h1>
+            {/* <font color="blue">{output}</font> */}
+            <form>
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="repwd">Re-enter Password:</label>
+                <input type="password" class="form-control" />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" />
+              </div>
+              <br />
+              <p>Already have an account? <a href="#">Login</a></p>
+              <button type="button" class="btn btn-success">Submit</button>
+            </form>
           </div>
-  
+        </div>
       </div>
     </div>
-    
-    </>
-)
+
+    {/* <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <form>
+              <h2 className=" justify-content-center">Register</h2>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" className="form-control" id="name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input type="email" className="form-control" id="email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="reenterPassword">Re-enter Password</label>
+                <input type="password" className="form-control" id="reenterPassword" />
+              </div>
+              <button type="submit" className="btn btn-primary">Register</button>
+              <p>Already have an account? <a href="#">Login</a></p>
+            </form>
+          </div>
+        </div>
+      </div> */}
+
+    {/* <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <form>
+              <h2>Register</h2>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" className="form-control" id="name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input type="email" className="form-control" id="email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="reenterPassword">Re-enter Password</label>
+                <input type="password" className="form-control" id="reenterPassword" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="mobile">Mobile</label>
+                <input type="text" className="form-control" id="mobile" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="city">City</label>
+                <input type="text" className="form-control" id="city" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="gender">Gender</label>
+                <select className="form-control" id="gender">
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-primary">Register</button>
+              <p>Already have an account? <a href="#">Login</a></p>
+            </form>
+          </div>
+        </div>
+      </div> */}
+
+  </>
+}
+
+const Login = () => {
+  return <>
+    <div class="container-fluid bg-light p-0">
+      <div class="row g-0">
+        <div class="col-lg-12 py-6 px-5 row justify-content-center">
+          <div className="col-md-6">
+            <h1 class="display-5 mb-4">Login <span class="text-success">Here!!!</span></h1>
+            {/* <font color="blue">{output}</font> */}
+            <form>
+              <br />
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" />
+              </div>
+              <br />
+              <p>Don't have an account? <a href="#">Register here</a></p>
+              <button type="button" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
 }
