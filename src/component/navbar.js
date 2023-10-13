@@ -1,3 +1,6 @@
+
+import { Link } from "react-router-dom";
+
 function Navbar() {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -71,19 +74,21 @@ function Navbar() {
                     style={{ marginLeft: "560px" }}
                   >
                     <li>
-                      <a href="/home" class="text-decoration-none">
+                      {/* <a href="/home" class="text-decoration-none">
                         Home
-                      </a>
+                      </a> */}
+                      <Link to="/home" class="text-decoration-none">Home</Link>
                     </li>
 
                     <li>
-                      <a href="/about" class="text-decoration-none">
+                      {/* <a href="/about" class="text-decoration-none">
                         About Us
-                      </a>
+                      </a> */}
+                      <Link to="/about" class="text-decoration-none">About Us</Link>
                     </li>
 
                     <li className="submenu dropdown">
-                      <a
+                      {/* <a
                         href="/hotel-list"
                         className="dropdown-toggle"
                         data-toggle="dropdown"
@@ -93,7 +98,18 @@ function Navbar() {
                         class="text-decoration-none"
                       >
                         Hotels
-                      </a>
+                      </a> */}
+                      <Link to="/hotel-list" class="dropdown-toggle text-decoration-none"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false">Hotels</Link>
+                    </li>
+
+                    <li>
+                      <Link to="/login" class="text-decoration-none">
+                      <i className="icon-user"/> Login/Register
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -121,7 +137,7 @@ function Navbar() {
 
 
 
-      
+
     </>
   );
 }
