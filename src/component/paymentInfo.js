@@ -54,7 +54,7 @@ const {bookingId}= useParams()
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ bookingStatus: 'Confirmed' }),
+            body: JSON.stringify({ bookingStatus: 'Confirmed' ,paymentStatus:'pending'}),
         })
         .then(response => {
             if (response.ok) {
