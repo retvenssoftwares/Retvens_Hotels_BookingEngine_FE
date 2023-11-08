@@ -49,7 +49,7 @@ const {bookingId}= useParams()
     const handlePayAtHotelConfirm = () => {
         // Make a PATCH request to the server with the bookingStatus as "confirm"
        // const bookingId = "kxoUQKzC"; // Replace with your actual booking ID
-        fetch(`http://localhost:9000/patchBooking/${bookingId}`, {
+        fetch(`https://api.retvenshotels.com/patchBooking/${bookingId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ function HotelList() {
         // Define a function to fetch hotel data from the API
         const fetchHotels = async () => {
             try {
-                const response = await fetch('http://localhost:9000/getAllProperty');
+                const response = await fetch('https://api.retvenshotels.com/getAllProperty');
                 if (response.ok) {
                     const data = await response.json();
                     setHotels(data); // Update the hotels state with the fetched data
@@ -33,7 +33,7 @@ function HotelList() {
     const [cityOptions, setCityOptions] = useState([]); // Initialize state for city options
     useEffect(() => {
         // Fetch city data from the API
-        fetch('http://localhost:9000/propertycity')
+        fetch('https://api.retvenshotels.com/propertycity')
             .then((response) => response.json())
             .then((data) => {
                 // Update the state with the fetched city options
@@ -46,7 +46,7 @@ function HotelList() {
 
     const handleSearch = () => {
         // Make an API request to fetch hotels by city
-        fetch(`http://localhost:9000/getPropertyByCity/${selectedCity}`)
+        fetch(`https://api.retvenshotels.com/getPropertyByCity/${selectedCity}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)

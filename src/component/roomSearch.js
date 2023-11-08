@@ -108,7 +108,7 @@ function Search({setRoomData}) {
   const handleSearch = () => {
     // Make an API request with check-in and check-out dates
     //const propertyId = "RJYud6Ea";
-    fetch(`http://localhost:9000/fetchInventoryFilter?from=${originalCheckIn}&to=${originalCheckOut}&propertyId=${propertyId}`)
+    fetch(`https://api.retvenshotels.com/fetchInventoryFilter?from=${originalCheckIn}&to=${originalCheckOut}&propertyId=${propertyId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

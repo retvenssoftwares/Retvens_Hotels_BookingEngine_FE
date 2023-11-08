@@ -63,7 +63,7 @@ function Booking({roomTypeId,ratePlanId}) {
       console.log(requestData);
 
       // Make the API call
-      const response = await fetch("http://localhost:9000/createBooking", {
+      const response = await fetch("https://api.retvenshotels.com/createBooking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

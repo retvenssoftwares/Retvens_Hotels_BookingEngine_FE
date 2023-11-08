@@ -54,7 +54,7 @@ const Register = ({setIsLogin}) => {
     };
 
     // Make a POST request to the signup API using the fetch API
-    fetch("http://localhost:9000/signUp", {
+    fetch("https://api.retvenshotels.com/signUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +138,7 @@ const Login = () => {
     };
 
     // Make a POST request to the signup API using the fetch API
-    fetch("http://localhost:9000/login", {
+    fetch("https://api.retvenshotels.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

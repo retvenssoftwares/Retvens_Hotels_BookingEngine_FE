@@ -4,7 +4,7 @@
         const [hotels, setHotels] = useState([]);
         useEffect(() => {
             // Fetch data from the API
-            fetch('http://localhost:8000/api/get/hotels')
+            fetch('https://api.retvenshotels.com/api/get/hotels')
               .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');

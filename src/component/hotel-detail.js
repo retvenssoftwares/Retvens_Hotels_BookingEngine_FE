@@ -12,7 +12,7 @@ function HotelDetail() {
   const [roomData, setRoomData] = useState([]);
   useEffect(() => {
     // Fetch hotel data from the API
-    fetch(`http://localhost:9000/getProperty/${propertyId}`)
+    fetch(`https://api.retvenshotels.com/getProperty/${propertyId}`)
       .then((response) => response.json())
       .then((data) => {
         // Update the state with the fetched data

@@ -8,7 +8,7 @@ function BookingStatus() {
 
 //    useEffect(() => {
 //     // Fetch data from the API
-//     fetch(`http://localhost:9000/createBooking/${userId}`)
+//     fetch(`https://api.retvenshotels.com/createBooking/${userId}`)
 //         .then((response) => {
 //             if (response.ok) {
 //                 return response.json();
@@ -31,7 +31,7 @@ useEffect(() => {
     async function getList() {
         const userId = await window.cookieStore.get("userId")
 
-        const url = `http://localhost:9000/getUserBookings/${userId?.value}`
+        const url = `https://api.retvenshotels.com/getUserBookings/${userId?.value}`
         const response = await axios.get(url)
         console.log(response.data, url)
         setBookingData(response.data)
