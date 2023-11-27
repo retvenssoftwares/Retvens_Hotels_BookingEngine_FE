@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function Footer(){
     return(
         <footer className="pt-4 pb-6" style={{ backgroundImage: 'url(images/background_pattern.png)' }}>
@@ -11,14 +12,13 @@ function Footer(){
                 <div className="footer-about">
                   <img src="/assets/images/Retvens-Hotels-Resized.png" alt="" />
                   <p className="mt-3 mb-3 white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio suspendisse leo neque
-                    iaculis molestie sagittis maecenas aenean eget molestie sagittis.
+                  We provide result driven solutions to meet and surpass the challenges of visibility, growth & distribution of revenue across channels. 
                   </p>
                   <ul>
-                    <li className="white"><strong>PO Box:</strong> +47-252-254-2542</li>
-                    <li className="white"><strong>Location:</strong> Collins Street, sydney, Australia</li>
-                    <li className="white"><strong>Email:</strong> info@Travelin.com</li>
-                    <li className="white"><strong>Website:</strong> www.Travelin.com</li>
+                    <li className="white"><strong>Phone:</strong> +91-9165-277-277</li>
+                    <li className="white"><strong>Location:</strong> 401, Princess Business Skyline, Vijay Nagar, Indore, Madhya Pradesh 452010</li>
+                    <li className="white"><strong>Email:</strong> cso@retvensservices.com</li>
+                    <li className="white"><strong>Website:</strong> https://www.retvenshotels.com</li>
                   </ul>
                 </div>
               </div>
@@ -26,12 +26,12 @@ function Footer(){
                 <div className="footer-links">
                   <h3 className="white">Quick link</h3>
                   <ul>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="about-us.html">Delivery Information</a></li>
-                    <li><a href="about-us.html">Privacy Policy</a></li>
-                    <li><a href="about-us.html">Terms &amp; Conditions</a></li>
-                    <li><a href="about-us.html">Customer Service</a></li>
-                    <li><a href="#about-us.html">Return Policy</a></li>
+                    <li>About Us</li>
+                    <li>Delivery Information</li>
+                    <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+                    <li>Terms &amp; Conditions</li>
+                    <li>Customer Service</li>
+                    <li>Return Policy</li>
                   </ul>
                 </div>
               </div>
@@ -60,14 +60,14 @@ function Footer(){
           <div className="container">
             <div className="copyright-inner rounded p-3 d-md-flex align-items-center justify-content-between">
               <div className="copyright-text">
-                <p className="m-0 white">2023 Retvens. All rights reserved.</p>
+                <p className="m-0 white">2023 Retvens Services Pvt. Ltd. All rights reserved.</p>
               </div>
               <div className="social-links">
                 <ul>
-                  <li><a href="#"><i className="fab fa-facebook" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-twitter" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-instagram" aria-hidden="true" /></a></li>
-                  <li><a href="#"><i className="fab fa-linkedin" aria-hidden="true" /></a></li>
+                  <li><a href="http://www.facebook.com/retvensservices"><i className="fab fa-facebook" aria-hidden="true" /></a></li>
+                  <li><a href="http://www.twitter.com/retvensservices"><i className="fab fa-twitter" aria-hidden="true" /></a></li>
+                  <li><a href="http://www.instagram.com/retvensservices"><i className="fab fa-instagram" aria-hidden="true" /></a></li>
+                  <li><a href="http://www.linkedin.com/company/retvensservices"><i className="fab fa-linkedin" aria-hidden="true" /></a></li>
                 </ul>
               </div>
             </div>

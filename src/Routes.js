@@ -11,6 +11,7 @@ import HotelList from './component/hotel-list';
 import HotelDetail from './component/hotel-detail';
 import Payment from './component/payment';
 import BookingStatus from './component/BookingStatus';
+import PrivacyPolicy from './component/privacyPolicy';
 // import RoomBooking from './component/RoomBooking';
 
 // import HotelDetail1 from './component/hotel-detail1';
@@ -30,6 +31,7 @@ function BookingRoutes() {
         <Route exact path="/hotel-list" element={<HotelList />} />
         <Route exact path="/hotel-detail/:propertyId" element={<HotelDetail />} />
         <Route exact path='/booking-status' element={<BookingStatus />} />
+        <Route exact path='/privacy-policy' element={<PrivacyPolicy />} />
         {/* <Route exact path="/hotel-detail1/:hotel_id" element={<HotelDetail1 />} /> */}
         {/* <Route exact path="/roombooking" element={<RoomBooking />} /> */}
 

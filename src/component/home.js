@@ -44,8 +44,7 @@ function Home() {
                 <div className="banner-content text-lg-start text-center">
                   <h4 className="theme mb-0">Explore The World</h4>
                   <h1>Start Planning Your Dream Trip Today!</h1>
-                  <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore</p>
+                  <p className="mb-4">At Retvens Hotels, we're dedicated to providing an exceptional experience tailored just for you. Whether you're seeking top-notch services, insightful information, or a platform to elevate your journey, you've arrived at the right place. Explore, engage, and let Retvens Hotels be your companion on the path to successful trips. Welcome aboard!</p>
                   <div class="book-form">
                     <div class="row d-flex align-items-center justify-content-between">
                       <div class="col-lg-12 mb-2">
@@ -121,11 +120,7 @@ function Home() {
                 <div className="about-content text-center text-lg-start mb-4">
                   <h4 className="theme d-inline-block mb-0">Get To Know Us</h4>
                   <h2 className="border-b mb-2 pb-1">Explore All Tour of the world with us.</h2>
-                  <p className="border-b mb-2 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.<br /><br />Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                    officia deserunt mollit anim id est laborum.</p>
+                  <p className="border-b mb-2 pb-2">Get ready to broaden your horizons and satiate your wanderlust as you explore the world with us. At [Your Company Name], we're your companions in creating unforgettable travel experiences. Dive into the beauty of diverse cultures, picturesque landscapes, and captivating destinations. Join us on a journey that goes beyond the ordinary, and let every tour be a chapter in your travel story. Discover, wander, and make memories with us.</p>
                   <div className="about-listing">
                     <ul className="d-flex justify-content-between">
                       <li><i className="icon-location-pin theme" /> Tour Guide</li>
@@ -143,7 +138,7 @@ function Home() {
                       <div className="col-lg-3 col-md-6 col-sm-6 mb-4">
                         <div className="counter-item border-end pe-4">
                           <div className="counter-content">
-                            <h2 className="value mb-0 theme">20</h2>
+                            <h2 className="value mb-0 theme">2</h2>
                             <span className="m-0">Years Experiences</span>
                           </div>
                         </div>
@@ -151,7 +146,7 @@ function Home() {
                       <div className="col-lg-3 col-md-6 col-sm-6 mb-4">
                         <div className="counter-item border-end pe-4">
                           <div className="counter-content">
-                            <h2 className="value mb-0 theme">530</h2>
+                            <h2 className="value mb-0 theme">134</h2>
                             <span className="m-0">Tour Packages</span>
                           </div>
                         </div>
@@ -159,19 +154,19 @@ function Home() {
                       <div className="col-lg-3 col-md-6 col-sm-6 mb-4">
                         <div className="counter-item border-end pe-4">
                           <div className="counter-content">
-                            <h2 className="value mb-0 theme">850</h2>
+                            <h2 className="value mb-0 theme">330+</h2>
                             <span className="m-0">Happy Customers</span>
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-3 col-md-6 col-sm-6 mb-4">
+                      {/* <div className="col-lg-3 col-md-6 col-sm-6 mb-4">
                         <div className="counter-item">
                           <div className="counter-content">
                             <h2 className="value mb-0 theme">320</h2>
                             <span className="m-0">Award Winning</span>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -190,7 +185,7 @@ function Home() {
           <div className="section-title mb-6 w-50 mx-auto text-center">
             <h4 className="mb-1 theme1">Top Hotels</h4>
             <h2 className="mb-1">Explore <span className="theme">Top Hotels</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            <p>Luxury Awaits: Explore Top Hotels
             </p>
           </div>
           <div className="row align-items-center">
@@ -287,7 +282,7 @@ function Home() {
           <div className="section-title mb-6 w-75 mx-auto text-center">
             <h4 className="mb-1 theme1">Top Deals</h4>
             <h2 className="mb-1">The Last <span className="theme">Minute Deals</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            <p>Discover Unbeatable Offers with Our Top Deals
             </p>
           </div>
           <div className="trend-box">
@@ -545,7 +540,7 @@ function Home() {
           <div className="section-title mb-6 text-center w-75 mx-auto">
             <h4 className="mb-1 theme1">Our Testimonails</h4>
             <h2 className="mb-1">Good Reviews By <span className="theme">Clients</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            <p>Explore a collection of compelling success stories and glowing testimonials in our "Our Testimonials" section
             </p>
           </div>
           <div className="row align-items-center">
@@ -561,15 +556,12 @@ function Home() {
                     <div className="author-info d-flex align-items-center mb-4">
                       <img src="/assets/images/testimonial/img1.jpg" alt="" />
                       <div className="author-title ms-3">
-                        <h5 className="m-0 theme">Jared Erondu</h5>
-                        <span>Supervisor</span>
+                        <h5 className="m-0 theme">Shreyas Saraf</h5>
+                        <span>DOS, Banyan Tree</span>
                       </div>
                     </div>
                     <div className="details">
-                      <p className="m-0"><i className="fa fa-quote-left me-2 fs-1" />Lorem Ipsum is simply dummy
-                        text of the printing andypesetting industry. Lorem ipsum a simple Lorem Ipsum
-                        has been the industry's standard dummy hic et quidem. Dignissimos maxime velit
-                        unde inventore quasi vero dolorem.</p>
+                      <p className="m-0"><i className="fa fa-quote-left me-2 fs-1" />I wanted to take a moment to acknowledge the incredible work Prashant and his team is doing with "Connecting The Dots." It's a fantastic initiative that not only brings valuable insights to the audience but also plays a pivotal role in connecting hoteliers like me. Reaching the 30th episode is a remarkable achievement, and I'm honoured to have been a part of it. My experience with the podcast, R-own, and Retvens has been amazing, and I'm truly impressed with the quality and depth of the podcast. Your ability to connect industry professionals and facilitate insightful discussions is commendable. Keep up the fantastic work, and I look forward to more engaging episodes in the future. Thank you for including me in this journey.</p>
                     </div>
                   </div>
                 </div>
@@ -578,15 +570,12 @@ function Home() {
                     <div className="author-info d-flex align-items-center mb-4">
                       <img src="/assets/images/testimonial/img1.jpg" alt="" />
                       <div className="author-title ms-3">
-                        <h5 className="m-0 theme">Jared Erondu</h5>
-                        <span>Supervisor</span>
+                        <h5 className="m-0 theme">Nandani sounkhiya</h5>
+                        <span>PR & marketing manager, Ananta hotel</span>
                       </div>
                     </div>
                     <div className="details">
-                      <p className="m-0"><i className="fa fa-quote-left me-2 fs-1" />Lorem Ipsum is simply dummy
-                        text of the printing andypesetting industry. Lorem ipsum a simple Lorem Ipsum
-                        has been the industry's standard dummy hic et quidem. Dignissimos maxime velit
-                        unde inventore quasi vero dolorem.</p>
+                      <p className="m-0"><i className="fa fa-quote-left me-2 fs-1" />Retvens Hotels has helped us in taking our hotel to new heights by providing the right amount of publicity, visibility and reach. Their expertise with their strong presence in the market and the experience they have makes them stand out from others. They provide a professional service which is most efficient and cost-effective way to increase your online revenue and visibility at no additional cost.</p>
                     </div>
                   </div>
                 </div>

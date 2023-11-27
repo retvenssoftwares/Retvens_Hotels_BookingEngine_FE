@@ -115,13 +115,13 @@ function Navbar() {
                         aria-haspopup="true"
                         aria-expanded="false">Hotels</Link>
                     </li>
-                    {isAuth === "true" &&
+                    {/* {isAuth === "true" &&
                       <li>
                         <Link to="/booking-status" class="text-decoration-none">
                           <i className="icon-user" /> Your Booking
                         </Link>
                       </li>
-                    }
+                    } */}
                     <li>
                       {isAuth === "false" &&
                         <Link to="/login" class="text-decoration-none">
