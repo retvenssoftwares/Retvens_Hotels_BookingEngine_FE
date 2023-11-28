@@ -26,12 +26,10 @@ function Footer(){
                 <div className="footer-links">
                   <h3 className="white">Quick link</h3>
                   <ul>
-                    <li>About Us</li>
-                    <li>Delivery Information</li>
+                    <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-                    <li>Terms &amp; Conditions</li>
-                    <li>Customer Service</li>
-                    <li>Return Policy</li>
+                    <li><Link to="/tnc">Terms &amp; Conditions</Link></li>
+                    <li><Link to="/tns">Trust & Safety</Link></li>
                   </ul>
                 </div>
               </div>
