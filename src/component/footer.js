@@ -30,6 +30,8 @@ function Footer(){
                     <li><Link to="/privacy-policy">Privacy Policy</Link></li>
                     <li><Link to="/tnc">Terms &amp; Conditions</Link></li>
                     <li><Link to="/tns">Trust & Safety</Link></li>
+                    <li><Link to="/refund-policy">Refund Policy</Link></li>
+                    <li><Link to="/cancellation-policy">Cancellation Policy</Link></li>
                   </ul>
                 </div>
               </div>

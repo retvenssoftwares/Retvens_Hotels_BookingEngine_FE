@@ -16,6 +16,8 @@ import BookingStatus from './component/BookingStatus';
 import PrivacyPolicy from './component/privacyPolicy';
 import TermsNConditions from './component/termsNConditions';
 import TrustNSafety from './component/trustNSafety';
+import RefundPolicy from './component/refundPolicy';
+import CancellationPolicy from './component/cancellationPolicy';
 // import RoomBooking from './component/RoomBooking';
 
 // import HotelDetail1 from './component/hotel-detail1';
@@ -54,6 +56,8 @@ function Inner() {
       <Route exact path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route exact path='/tnc' element={<TermsNConditions />} />
       <Route exact path='/tns' element={<TrustNSafety />} />
+      <Route exact path='/refund-policy' element={<RefundPolicy />} />
+      <Route exact path='/cancellation-policy' element={<CancellationPolicy />} />
       {/* <Route exact path="/hotel-detail1/:hotel_id" element={<HotelDetail1 />} /> */}
       {/* <Route exact path="/roombooking" element={<RoomBooking />} /> */}
 
