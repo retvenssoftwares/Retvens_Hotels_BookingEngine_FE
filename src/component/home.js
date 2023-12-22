@@ -195,8 +195,8 @@ function Home() {
                   <img src="/assets/images/hotel1.png" alt="image" height="650px" />
                   <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
                     <div className="trend-content-title">
-                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">England</a></h5>
-                      <h3 className="mb-0 white">London</h3>
+                      <h5 className="mb-0"><a href="tour-grid.html" className="theme1">India</a></h5>
+                      <h3 className="mb-0 white">Madhya Pradesh</h3>
                     </div>
                     <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
                   </div>
@@ -212,9 +212,9 @@ function Home() {
                       <img src="/assets/images/hotel2.png" alt="image" height="300px" />
                       <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
                         <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Italy</a>
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">India</a>
                           </h5>
-                          <h3 className="mb-0 white">Caspian Valley</h3>
+                          <h3 className="mb-0 white">Rajasthan</h3>
                         </div>
                         <span className="white bg-theme p-1 px-2 rounded">18 Tours</span>
                       </div>
@@ -228,9 +228,9 @@ function Home() {
                       <img src="/assets/images/hotel3.png" alt="image" height="300px" />
                       <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
                         <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Tokyo</a>
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">India</a>
                           </h5>
-                          <h3 className="mb-0 white">Japan</h3>
+                          <h3 className="mb-0 white">Punjab</h3>
                         </div>
                         <span className="white bg-theme p-1 px-2 rounded">21 Tours</span>
                       </div>
@@ -244,9 +244,9 @@ function Home() {
                       <img src="/assets/images/hotel3.png" alt="image" height="300px" />
                       <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100">
                         <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Moscow</a>
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">India</a>
                           </h5>
-                          <h3 className="mb-0 white">Russia</h3>
+                          <h3 className="mb-0 white">Himachal Pradesh</h3>
                         </div>
                         <span className="white bg-theme p-1 px-2 rounded">15 Tours</span>
                       </div>
@@ -260,9 +260,9 @@ function Home() {
                       <img src="/assets/images/hotel4.png" alt="image" height="300px" />
                       <div className="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
                         <div className="trend-content-title">
-                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">Florida</a>
+                          <h5 className="mb-0"><a href="tour-grid.html" className="theme1">India</a>
                           </h5>
-                          <h3 className="mb-0 white">America</h3>
+                          <h3 className="mb-0 white">Assam</h3>
                         </div>
                         <span className="white bg-theme p-1 px-2 rounded">32 Tours</span>
                       </div>
@@ -292,8 +292,8 @@ function Home() {
                   <div className="trend-image position-relative">
                     <img src="/assets/images/trending/trendingb-2.jpg" alt="image" className />
                     <div className="trend-content1 p-4">
-                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Norway</h5>
-                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">Norway Lake</a>
+                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Rajasthan</h5>
+                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">Shahpura Province</a>
                       </h3>
                       <div className="rating-main d-flex align-items-center pb-2">
                         <div className="rating">
@@ -307,7 +307,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹180.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹6430.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -323,8 +323,8 @@ function Home() {
                   <div className="trend-image position-relative">
                     <img src="/assets/images/trending/trending-large.jpg" alt="image" className />
                     <div className="trend-content1 p-4">
-                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Egpyt</h5>
-                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">Pyramid Land</a>
+                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Old Manali</h5>
+                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">Moustache Hostel</a>
                       </h3>
                       <div className="rating-main d-flex align-items-center pb-2">
                         <div className="rating">
@@ -338,7 +338,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹180.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹1860.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -354,9 +354,8 @@ function Home() {
                   <div className="trend-image position-relative">
                     <img src="/assets/images/trending/trendingb-1.jpg" alt="image" className />
                     <div className="trend-content1 p-4">
-                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Usa</h5>
-                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">New York
-                        City</a></h3>
+                      <h5 className="theme1 mb-1"><i className="flaticon-location-pin" /> Manali</h5>
+                      <h3 className="mb-1 white"><a href="tour-grid.html" className="white">BackPackers</a></h3>
                       <div className="rating-main d-flex align-items-center pb-2">
                         <div className="rating">
                           <span className="fa fa-star checked" />
@@ -369,7 +368,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹140.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹4540.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -397,8 +396,8 @@ function Home() {
                             <span className="fw-bold"> 4 Days Tours</span>
                           </div>
                         </div>
-                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Spain</h5>
-                        <h3 className="mb-1"><a href="tour-grid.html">Barcelona city beach</a></h3>
+                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Chandigarh</h5>
+                        <h3 className="mb-1"><a href="tour-grid.html">Apna city palace</a></h3>
                         <div className="rating-main d-flex align-items-center pb-2">
                           <div className="rating">
                             <span className="fa fa-star checked" />
@@ -413,7 +412,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹220.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹2720.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -433,8 +432,8 @@ function Home() {
                             <span className="fw-bold"> 7 Days Tours</span>
                           </div>
                         </div>
-                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Indonesia</h5>
-                        <h3 className="mb-1"><a href="tour-grid.html">Bali Province</a></h3>
+                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Jaisalmer</h5>
+                        <h3 className="mb-1"><a href="tour-grid.html">Rajhans Province</a></h3>
                         <div className="rating-main d-flex align-items-center pb-2">
                           <div className="rating">
                             <span className="fa fa-star checked" />
@@ -449,7 +448,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹210.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹2410.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -469,7 +468,7 @@ function Home() {
                             <span className="fw-bold"> 3 Days Tours</span>
                           </div>
                         </div>
-                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Russia</h5>
+                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Jaipur</h5>
                         <h3 className="mb-1"><a href="tour-grid.html">Red City Land</a></h3>
                         <div className="rating-main d-flex align-items-center pb-2">
                           <div className="rating">
@@ -485,7 +484,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹120.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹1420.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -505,8 +504,8 @@ function Home() {
                             <span className="fw-bold"> 5 Days Tours</span>
                           </div>
                         </div>
-                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Bangladesh</h5>
-                        <h3 className="mb-1"><a href="tour-grid.html">Cox's bazar Beach</a></h3>
+                        <h5 className="theme mb-1"><i className="flaticon-location-pin" /> Bangalore</h5>
+                        <h3 className="mb-1"><a href="tour-grid.html">Cox's bazar</a></h3>
                         <div className="rating-main d-flex align-items-center pb-2">
                           <div className="rating">
                             <span className="fa fa-star checked" />
@@ -521,7 +520,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹100.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹1200.00</span> | Per
                               person</p>
                           </div>
                         </div>
