@@ -307,7 +307,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> $180.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹180.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -338,7 +338,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> $180.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹180.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -369,7 +369,7 @@ function Home() {
                       </div>
                       <div className="entry-meta d-flex align-items-center justify-content-between">
                         <div className="entry-author d-flex align-items-center">
-                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> $140.00</span> |
+                          <p className="mb-0 white"><span className="theme1 fw-bold fs-5"> ₹140.00</span> |
                             Per person</p>
                         </div>
                         <div className="entry-author">
@@ -413,7 +413,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> $220.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹220.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -449,7 +449,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> $210.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹210.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -485,7 +485,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> $120.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹120.00</span> | Per
                               person</p>
                           </div>
                         </div>
@@ -521,7 +521,7 @@ function Home() {
                           voluptate velit esse cillum</p>
                         <div className="entry-meta">
                           <div className="entry-author d-flex align-items-center">
-                            <p className="mb-0"><span className="theme fw-bold fs-5"> $100.00</span> | Per
+                            <p className="mb-0"><span className="theme fw-bold fs-5"> ₹100.00</span> | Per
                               person</p>
                           </div>
                         </div>

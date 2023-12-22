@@ -342,7 +342,7 @@ $(function() {
       },
       yaxis: {
         title: {
-          text: 'Revenue ( $1000 x )',
+          text: 'Revenue ( ₹1000 x )',
           style:{
             size: 9,
             color: colors.muted
@@ -433,7 +433,7 @@ $(function() {
       yaxis: {
         opposite: true,
         title: {
-          text: 'Revenue ( $1000 x )',
+          text: 'Revenue ( ₹1000 x )',
           offsetX: -130,
           style:{
             size: 9,

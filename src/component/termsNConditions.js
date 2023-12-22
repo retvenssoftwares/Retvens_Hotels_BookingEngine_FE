@@ -1967,7 +1967,7 @@ function TermsNConditions() {
                 and in the event of any liability of our Group of Companies
                 and/or our Partners, such liability will in no event exceed, in
                 total, the greater of (a) the cost paid by you for the Travel
-                Services in question or (b) one-hundred dollars (US$100.00) or
+                Services in question or (b) one-hundred dollars (US₹100.00) or
                 the equivalent in local currency.
               </span>
             </div>
